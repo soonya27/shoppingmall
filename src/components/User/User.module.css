@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.container img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.pop_bg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+.pop_over {
+    position: absolute;
+    bottom: -0.3rem;
+    right: 0;
+    transform: translateY(100%);
+    padding: .8rem 0.9rem;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 0.3rem;
+    z-index: 10;
+}
+
+.pop_over p {
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #000;
+}
+
+.logoutBtn {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.logoutBtn span {
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+}

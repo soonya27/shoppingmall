@@ -1,0 +1,16 @@
+{
+  "admin": [
+    "4KX4rUxLQ0S568pWycKLEoPJv343",
+    "4KX4rUxLQ0S56"
+  ],
+  "products": [
+    {
+      "author": "username",
+      "authorPic": "picture",
+      "body": "body",
+      "starCount": 0,
+      "title": "title",
+      "uid": "uid"
+    }
+  ]
+}

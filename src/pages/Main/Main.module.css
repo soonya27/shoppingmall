@@ -1,0 +1,17 @@
+.visual {}
+
+.productList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.article {
+    padding: 25px 0;
+}
+
+article h3 {
+    margin: 0 0 30px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+}

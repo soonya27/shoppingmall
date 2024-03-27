@@ -1,0 +1,58 @@
+{
+    "items": [
+        {
+            "name": "HOLIDAY ZIPUP KNIT",
+            "price": "98,000",
+            "category": "여성",
+            "imageUrl": "/image/new_01",
+            "imageHoverURl": "/image/new_01-1",
+            "id": "1",
+            "descripct": "[BEIGE]"
+        },
+        {
+            "name": "WAVE DOUBLE JACKET",
+            "price": "139,000",
+            "category": "여성",
+            "imageUrl": "/image/new_02",
+            "imageHoverURl": "/image/new_02-1",
+            "id": "2",
+            "descripct": "[CHARCOAL]"
+        },
+        {
+            "name": "WAVE DOUBLE CHECK JACKET",
+            "price": "139,000",
+            "category": "여성",
+            "imageUrl": "/image/new_03",
+            "imageHoverURl": "/image/new_03-1",
+            "id": "3",
+            "descripct": "[PINK CHECK]"
+        },
+        {
+            "name": "WAVE DOUBLE CHECK JACKET2",
+            "price": "159,000",
+            "category": "여성",
+            "imageUrl": "/image/new_04",
+            "imageHoverURl": "/image/new_04-1",
+            "id": "4",
+            "descripct": "[PINK CHECK]"
+        },
+        {
+            "name": "SHIRTS BUSTIER PUFF ONEPIECE<",
+            "price": "159,000",
+            "category": "여성",
+            "imageUrl": "/image/new_05",
+            "imageHoverURl": "/image/new_05-1",
+            "id": "5",
+            "descripct": "[BEIGE]"
+        },
+        {
+            "name": "COLOR BLOCK FAUX LEATHER SKIRT<",
+            "price": "102,000",
+            "category": "여성",
+            "imageUrl": "/image/new_06",
+            "imageHoverURl": "/image/new_06-1",
+            "id": "6",
+            "descripct": "[BLACK]"
+        }
+    ]
+}
