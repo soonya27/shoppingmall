@@ -12,6 +12,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Header />
         <Outlet />
+        <div id="portal" />
       </QueryClientProvider>
     </>
   );

@@ -1,8 +1,8 @@
-import { initializeApp, setLogLevel } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import {
     getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged,
 } from "firebase/auth";
-import { getDatabase, ref, get, child, update, push } from "firebase/database";
+import { getDatabase, ref, get, child } from "firebase/database";
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -42,12 +42,10 @@ export function onUserStateChange(callback) {
 
 
 async function adminUser(user) {
-    return get(child(ref(database), `admin`)).then((snapshot) => {
+    return get(child(ref(database), `admins`)).then((snapshot) => {
         if (snapshot.exists()) {
             // console.log(user.uid);
-            // console.log(snapshot.val());
             const isAdmin = snapshot.val().includes(user.uid)
-            // console.log({ ...user, isAdmin });
             return { ...user, isAdmin }
         }
         return user;
@@ -59,15 +57,16 @@ async function adminUser(user) {
 
 
 export async function addNewProduct() {
-    const postData = {
-        author: 'username',
-        uid: 'uid',
-        body: 'body',
-        title: 'title',
-        starCount: 0,
-        authorPic: 'picture'
-    };
-    const updates = {};
+    // const postData = {
+    //     author: 'username',
+    //     uid: 'uid',
+    //     body: 'body',
+    //     title: 'title',
+    //     starCount: 0,
+    //     authorPic: 'picture'
+    // };
+    // const updates = {};
+
     // updates['/products/' + 0].push(postData);
     // console.log(updates);
     // return update(ref(database), updates);
@@ -79,7 +78,7 @@ export async function getProduct() {
     return get(child(ref(database), `products`)).then((snapshot) => {
         if (snapshot.exists()) {
             const data = Object.values(snapshot.val())
-            console.log(data);
+            // console.log(data);
             return data;
         }
         return [];

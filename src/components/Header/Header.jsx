@@ -5,11 +5,14 @@ import { login, onUserStateChange } from '../../api/firebase';
 import ShoppingbagIcon from '../ui/icons/ShoppingbagIcon';
 import AllmenuIcon from './../ui/icons/AllMenuIcon';
 import User from '../User/User';
+import ModalPortal from '../ui/icons/ModalPortal';
+import AllMenu from './../AllMenu/AllMenu';
 
 export default function Header() {
     //로그인여부 체크 -> 아이디표시, 로그인 버튼 변화 , 장바구니 불러오기 (갯수 표시)
     //로그인 ok ->1.일반, 2. 어드민:메뉴 하나 추가(newProduct)
     const [user, setUser] = useState();
+    const [allMenu, setAllMenu] = useState(false);
 
     useEffect(() => {
         onUserStateChange((user) => {
@@ -21,9 +24,18 @@ export default function Header() {
     return (
         <header className={styles.header}>
             <div className={styles.inner}>
-                <button className={`${styles.button} ${styles.all_menu}`}>
+                <button className={`${styles.button} ${styles.all_menu}`} onClick={() => setAllMenu(true)}>
                     <AllmenuIcon />
                 </button>
+                {
+                    allMenu && (
+                        <ModalPortal >
+                            <AllMenu onClose={() => setAllMenu(false)}>
+                                <p>text</p>
+                            </AllMenu>
+                        </ModalPortal>
+                    )
+                }
                 <h1>
                     <Link to="/">
                         <img src="/image/logo.png" alt="" />
