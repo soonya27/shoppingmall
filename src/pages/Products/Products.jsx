@@ -20,7 +20,7 @@ export default function ProductDetail() {
 
 
     return (
-        <div>
+        <div className='inner'>
             <h2>All Products</h2>
             <article>
                 {isLoading && <p>loading...</p>}

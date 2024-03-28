@@ -28,14 +28,16 @@ export default function Main() {
             <Promotion />
             <article className={styles.article}>
                 <Title highlight="NEW" text="ARRIVAL" />
-                {isLoading && <p>loading...</p>}
-                {products &&
-                    <ul className={styles.productList}>
-                        {products.map(product => (
-                            <ProductCard key={product.id} product={product} />
-                        ))}
-                    </ul>
-                }
+                <div className='inner'>
+                    {isLoading && <p>loading...</p>}
+                    {products &&
+                        <ul className={styles.productList}>
+                            {products.map(product => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
+                        </ul>
+                    }
+                </div>
             </article>
         </main>
     );

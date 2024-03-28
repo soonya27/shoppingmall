@@ -21,3 +21,10 @@ code {
 img {
   width: 100%;
 }
+
+.inner {
+  width: var(--inner-w);
+  max-width: var(--inner-mw);
+  margin: auto;
+  position: relative;
+}
