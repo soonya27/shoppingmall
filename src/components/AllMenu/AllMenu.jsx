@@ -14,9 +14,13 @@ export default function AllMenu({ onClose, children }) {
             }}
         >
             {/* PostModal container */}
-            <div className={styles.modal_body}>
+            <div className={styles.modal_body} onClick={(e) => {
+                if (e.target.localName === 'a') {
+                    onClose();
+                }
+            }}>
                 <button onClick={onClose}
-                    className='absolute -top-9 right-0 text-white'
+                    className={styles.closeBtn}
                 ><CloseIcon /></button>
                 {children}
             </div>

@@ -31,7 +31,16 @@ export default function Header() {
                     allMenu && (
                         <ModalPortal >
                             <AllMenu onClose={() => setAllMenu(false)}>
-                                <p>text</p>
+                                <ul>
+                                    <li> <Link to="/products">
+                                        Products
+                                    </Link></li>
+                                    {user?.isAdmin && (
+                                        <li>
+                                            <Link to="/products/new">New</Link>
+                                        </li>
+                                    )}
+                                </ul>
                             </AllMenu>
                         </ModalPortal>
                     )
@@ -43,26 +52,10 @@ export default function Header() {
                 </h1>
 
                 <ul className={styles.navbar}>
-                    <li>
-                        <ul>
-                            <li>
-                                <Link to="/products">
-                                    Products
-                                </Link>
-                            </li>
-                        </ul>
-
-                    </li>
                     {user && (
                         <li><Link to="/cart" className={styles.menu_icon}>
                             <ShoppingbagIcon />
                         </Link></li>
-                    )}
-
-                    {user?.isAdmin && (
-                        <li>
-                            <Link to="/products/new">New</Link>
-                        </li>
                     )}
                     {user && <li><User user={user} /></li>}
                     {!user && <li><button className={styles.button} type="button" onClick={login}>Login</button></li>}

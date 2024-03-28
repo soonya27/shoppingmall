@@ -5,9 +5,7 @@
     flex-wrap: wrap;
 }
 
-.article {
-    padding: 25px 0;
-}
+.article {}
 
 article h3 {
     margin: 0 0 30px;

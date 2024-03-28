@@ -4,6 +4,8 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import { useQuery } from '@tanstack/react-query';
 import Visual from '../../components/Visual/Visual';
 import { getProduct } from '../../api/firebase';
+import Promotion from '../../components/Promotion/Promotion';
+import Title from '../../components/ui/Title/Title';
 
 export default function Main() {
     //main에는 popular list를 보여줄수도 있으니... 
@@ -23,8 +25,9 @@ export default function Main() {
     return (
         <main>
             <Visual item={item} item2={{ key: 'item2' }} />
+            <Promotion />
             <article className={styles.article}>
-                <h3>Popular</h3>
+                <Title highlight="NEW" text="ARRIVAL" />
                 {isLoading && <p>loading...</p>}
                 {products &&
                     <ul className={styles.productList}>

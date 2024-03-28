@@ -1,0 +1,92 @@
+.inner {
+    position: relative;
+    width: 100%;
+    max-width: var(--inner-mw);
+    margin: 0 auto;
+    margin-bottom: 20rem;
+}
+
+.txt {
+    position: absolute;
+    top: 33rem;
+    left: 2rem;
+    z-index: 10
+}
+
+.txt strong {
+    font-size: 72px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    line-height: 1;
+    letter-spacing: 0.972vw;
+}
+
+.txt strong:last-child {
+    text-indent: 90px;
+}
+
+.right {
+    padding-top: 8rem;
+    margin-left: 15rem;
+    margin-bottom: 10rem;
+    position: relative;
+}
+
+.right:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 26rem;
+    height: 20rem;
+    transform: translateY(70%);
+    background-image: url(/public/image/content_bg.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: -1;
+}
+
+.left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(30%);
+    width: 50%;
+}
+
+
+
+
+@media screen and (max-width : 1024px) {
+    .inner {
+        margin-bottom: 55vw;
+    }
+
+    .right {
+        margin-left: 20%;
+        padding-top: 6.25vw;
+    }
+
+    .right:before {
+        right: 2vw;
+        transform: translateY(90%);
+        width: 41%;
+    }
+
+    .txt {
+        width: 60%;
+        position: absolute;
+        top: 30vw;
+        left: 4vw;
+    }
+
+    .txt strong {
+        font-size: 6vw;
+    }
+
+    .left {
+        width: 60%;
+        transform: translateY(60%);
+    }
+}
