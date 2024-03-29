@@ -21,8 +21,9 @@
 }
 
 .txt span {
+    font-size: 1rem;
     display: block;
-    color: #fff
+    color: #fff;
 }
 
 .txt span:nth-of-type(2) {
@@ -44,7 +45,7 @@
 .txt strong {
     display: block;
     color: #222;
-    font-size: 2vw;
+    font-size: 2rem;
     line-height: 1;
     text-align: center;
     font-weight: 600;
@@ -71,7 +72,8 @@
 }
 
 .mobile_txt em {
-    font-size: 4.85vw;
+    font-size: 5vw;
+    white-space: nowrap
 }
 
 .mobile_txt h2 {

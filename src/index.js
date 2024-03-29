@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import './reset.css';
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { Reset } from 'styled-reset';
 import Main from './pages/Main/Main';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import Products from './pages/Products/Products';
@@ -47,7 +46,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Reset />
     <RouterProvider router={router}>
       <App />
     </RouterProvider>

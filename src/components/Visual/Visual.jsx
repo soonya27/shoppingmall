@@ -19,12 +19,10 @@ export default function Visual({ item, item: { id, name }, item2, item2: { key }
                 <section className={styles.visual}>
                     <div className={styles.inner}>
                         <div className={styles.txt}>
-                            <span>2020</span>
                             <h2><p>H</p><p>O</p><p>L</p><p>I</p></h2>
                             <strong>DONOT</strong>
                             <strong><em>“</em>DISTURB<em>”</em></strong>
                             <h2><p>D</p><p>A</p><p>Y</p></h2>
-                            <span>COLLECTION</span>
                         </div>
                     </div>
                 </section>
