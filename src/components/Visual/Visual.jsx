@@ -6,7 +6,7 @@ import { SwiperSlide } from 'swiper/react';
 
 
 
-export default function Visual({ item, item: { id, name }, item2, item2: { key } }) {
+export default function Visual() {
     const isPc = useMediaQuery({
         query: "(min-width:1024px)"
     });

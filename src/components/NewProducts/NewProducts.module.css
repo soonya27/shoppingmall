@@ -1,0 +1,18 @@
+.visual {}
+
+.productList {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.article {
+    padding-bottom: 3.5rem;
+}
+
+article h3 {
+    margin: 0 0 30px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+}

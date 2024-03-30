@@ -1,15 +1,39 @@
-.visual {}
-
-.productList {
-    display: flex;
-    flex-wrap: wrap;
+.kakao {
+    background-color: #f2f2f2;
+    background-image: url(/public/image/footer_icon03.png);
+    background-repeat: no-repeat;
+    background-position: 50% 35px;
 }
 
-.article {}
+.kakao .inner {
+    height: 275px;
+}
 
-article h3 {
-    margin: 0 0 30px;
+.kakao strong {
+    padding-top: 80px;
+    font-size: 18px;
+    display: block;
     text-align: center;
-    font-size: 25px;
-    font-weight: 600;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.kakao strong+p {
+    font-size: 12px;
+    width: 67.18%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.kakao p.more a {
+    width: 34.375%;
+    height: 42px;
+    text-align: center;
+    margin: auto;
+    line-height: 42px;
+    background: #000;
+    color: #fff;
+    display: block;
+    border-radius: 20px;
 }

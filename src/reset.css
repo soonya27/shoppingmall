@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 
+
+
+
 html,
 body,
 div,
@@ -275,4 +278,12 @@ h6 {
     width: 0;
     height: 0;
     font-size: 0;
+}
+
+
+
+@media screen and (max-width : 1024px) {
+    a {
+        font-size: 3vw;
+    }
 }
