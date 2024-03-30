@@ -1,16 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
-import { useMediaQuery } from "react-responsive";
+import { useMediaQueryContext } from '../../context/MediaQueryContext';
 
 
 export default function ProductCard({ product }) {
-    const isPc = useMediaQuery({
-        query: "(min-width:1024px)"
-    });
-    const isTablet = useMediaQuery({
-        query: "(min-width:768px) and (max-width:1023px)"
-    });
+    const { isPc } = useMediaQueryContext();
     const { category, image, title, price, id } = product;
     const navigate = useNavigate();
     const handleClick = () => {

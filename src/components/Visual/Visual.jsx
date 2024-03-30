@@ -1,18 +1,13 @@
 import React from 'react';
 import styles from './Visual.module.css';
-import { useMediaQuery } from "react-responsive";
 import SwiperWrapper from './../ui/SwiperWrapper';
 import { SwiperSlide } from 'swiper/react';
+import { useMediaQueryContext } from '../../context/MediaQueryContext';
 
 
 
 export default function Visual() {
-    const isPc = useMediaQuery({
-        query: "(min-width:1024px)"
-    });
-    const isTablet = useMediaQuery({
-        query: "(min-width:768px) and (max-width:1023px)"
-    });
+    const { isPc } = useMediaQueryContext();
     return (
         <>
             {isPc ? (
