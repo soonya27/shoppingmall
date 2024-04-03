@@ -3,6 +3,7 @@ import { addNewProduct, getProduct } from '../../api/firebase';
 import Title from './../../components/ui/Title/Title';
 import styles from './AddProduct.module.css'
 import UploadIcon from './../../components/ui/icons/UploadIcon';
+import { uploadImage } from '../../api/uploader';
 
 
 export default function AddProduct() {
@@ -36,8 +37,12 @@ export default function AddProduct() {
         if (!file) return;
 
         //cloudnary에 업로드 후 url획득 
-        console.log(file)
-        console.log(form)
+        // console.log(file)
+        // console.log(form)
+        uploadImage(file)
+            .then(url => {
+                console.log(url)
+            })
     }
     return (
         <div className='inner'>

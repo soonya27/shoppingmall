@@ -55,3 +55,9 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+@media screen and (max-width: 1024px) {
+    .menu_icon {
+        height: 1.5rem;
+    }
+}
