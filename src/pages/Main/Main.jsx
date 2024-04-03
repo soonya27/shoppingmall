@@ -1,44 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Main.module.css';
-import ProductCard from '../../components/ProductCard/ProductCard';
-import { useQuery } from '@tanstack/react-query';
 import Visual from '../../components/Visual/Visual';
-import { getProduct } from '../../api/firebase';
 import Promotion from '../../components/Promotion/Promotion';
-import Title from '../../components/ui/Title/Title';
+import NewProducts from '../../components/NewProducts/NewProducts';
 
 export default function Main() {
-    //main에는 popular list를 보여줄수도 있으니... 
-    const {
-        isLoading,
-        error,
-        data: products
-    } = useQuery({
-        queryKey: ['products'],
-        queryFn: async () => getProduct()
-    })
 
-    const item = {
-        id: 'id',
-        name: 'name'
-    }
     return (
         <main>
-            <Visual item={item} item2={{ key: 'item2' }} />
+            <Visual />
             <Promotion />
-            <article className={styles.article}>
-                <Title highlight="NEW" text="ARRIVAL" />
-                <div className='inner'>
-                    {isLoading && <p>loading...</p>}
-                    {products &&
-                        <ul className={styles.productList}>
-                            {products.map(product => (
-                                <ProductCard key={product.id} product={product} />
-                            ))}
-                        </ul>
-                    }
+            <NewProducts />
+            <div className={styles.kakao}>
+                <div className={`inner ${styles.inner}`}>
+                    <strong>O!OiCOLLECTION KAKAO FRIEND</strong>
+                    <p>오아이오아이 카카오 플러스 친구가 되시면
+                        다양한 혜택을 받아보실 수 있습니다.</p>
+                    <p className={styles.more}><a href="#">친추하기</a></p>
                 </div>
-            </article>
+            </div>
         </main>
     );
 }
