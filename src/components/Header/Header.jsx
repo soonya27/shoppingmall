@@ -1,25 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-import { login, onUserStateChange } from '../../api/firebase';
 import ShoppingbagIcon from '../ui/icons/ShoppingbagIcon';
 import AllmenuIcon from './../ui/icons/AllMenuIcon';
 import User from '../User/User';
 import ModalPortal from '../ui/icons/ModalPortal';
 import AllMenu from './../AllMenu/AllMenu';
+import { useAuthContent } from '../context/AuthContext';
+import UserIcon from './../ui/icons/UserIcon';
 
 export default function Header() {
     //로그인여부 체크 -> 아이디표시, 로그인 버튼 변화 , 장바구니 불러오기 (갯수 표시)
     //로그인 ok ->1.일반, 2. 어드민:메뉴 하나 추가(newProduct)
-    const [user, setUser] = useState();
+
     const [allMenu, setAllMenu] = useState(false);
 
-    useEffect(() => {
-        onUserStateChange((user) => {
-            // console.log(user);
-            setUser(user);
-        });
-    }, []);
+    // const [user, setUser] = useState();
+    // useEffect(() => {
+    //     onUserStateChange((user) => {
+    //         // console.log(user);
+    //         setUser(user);
+    //     });
+    // }, []);
+    const { user, login } = useAuthContent();
 
     return (
         <header className={styles.header}>
@@ -52,13 +55,15 @@ export default function Header() {
                 </h1>
 
                 <ul className={styles.navbar}>
-                    {user && (
-                        <li><Link to="/cart" className={styles.menu_icon}>
-                            <ShoppingbagIcon />
-                        </Link></li>
-                    )}
+                    {/* {user && ( */}
+                    <li><Link to="/cart" className={styles.menu_icon}>
+                        <ShoppingbagIcon />
+                    </Link></li>
+                    {/* )} */}
                     {user && <li><User user={user} /></li>}
-                    {!user && <li><button className={styles.button} type="button" onClick={login}>Login</button></li>}
+                    {!user && <li><button className={styles.button} type="button" onClick={login}>
+                        <UserIcon />
+                    </button></li>}
                 </ul>
             </div>
 

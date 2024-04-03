@@ -30,6 +30,7 @@
 .navbar {
     display: flex;
     align-items: center;
+    gap: 2px;
 }
 
 .navbar li:not(:last-child) {
@@ -41,10 +42,16 @@
     height: 24px;
 }
 
+.menu_icon svg {
+    color: #000;
+}
+
 .button {
     padding: 0;
+    height: 24px;
     background: transparent;
-    font-weight: 600;
     border: none;
+    color: #000;
+    font-weight: 600;
     cursor: pointer;
 }

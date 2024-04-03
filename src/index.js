@@ -10,7 +10,8 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 import Products from './pages/Products/Products';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
-import AddProduct from './pages/AddProcucts.jsx/AddProduct';
+import ProtectedRoute from './pages/ProtectedRoute';
+import AddProduct from './pages/AddProduct/AddProduct';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/products/new",
-        element: <AddProduct />,
+        element: <ProtectedRoute requireAdmin>
+          <AddProduct />
+        </ProtectedRoute>, //redirect를 위해 component를 감싸서 체크해줌
       },
     ],
   }
