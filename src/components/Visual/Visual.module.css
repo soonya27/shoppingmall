@@ -61,6 +61,11 @@
     position: relative;
 }
 
+
+.swiper img {
+    height: 127.5vw;
+}
+
 .mobile_txt {
     position: absolute;
     bottom: 30%;

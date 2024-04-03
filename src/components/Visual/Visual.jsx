@@ -31,12 +31,14 @@ export default function Visual() {
                             <span>2020</span><span>COLLECTION</span>
                         </p>
                     </div>
-                    <SwiperWrapper>
-                        <SwiperSlide><img src="/image/visual_01.jpg" alt="" /></SwiperSlide>
-                        <SwiperSlide><img src="/image/visual_02.jpg" alt="" /></SwiperSlide>
-                        <SwiperSlide><img src="/image/visual_03.jpg" alt="" /></SwiperSlide>
-                        <SwiperSlide><img src="/image/visual_04.jpg" alt="" /></SwiperSlide>
-                    </SwiperWrapper>
+                    <div className={styles.swiper}>
+                        <SwiperWrapper>
+                            <SwiperSlide><img src="/image/visual_01.jpg" alt="" /></SwiperSlide>
+                            <SwiperSlide><img src="/image/visual_02.jpg" alt="" /></SwiperSlide>
+                            <SwiperSlide><img src="/image/visual_03.jpg" alt="" /></SwiperSlide>
+                            <SwiperSlide><img src="/image/visual_04.jpg" alt="" /></SwiperSlide>
+                        </SwiperWrapper>
+                    </div>
                 </section>
             )}
 

@@ -22,3 +22,16 @@ img {
   margin: auto;
   position: relative;
 }
+
+.swiper-pagination.swiper-pagination-fraction {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3px;
+  bottom: auto;
+  left: auto;
+  top: 2%;
+  right: 3%;
+  width: fit-content;
+  font-size: 2.8vw;
+  color: #868686;
+}
