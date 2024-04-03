@@ -1,3 +1,7 @@
+.li {
+    cursor: pointer;
+}
+
 .pc {
     position: relative;
     display: block;

@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
         //     </div>
         //     <span>{category}</span>
         // </li>
-        <li onClick={handleClick} >
+        <li onClick={handleClick} className={styles.li}>
             {
                 isPc ? (
                     <div className={styles.pc}>
@@ -39,9 +39,9 @@ export default function ProductCard({ product }) {
                     </ div>
                 ) : (
                     <div className="swiper-slide">
-                        <a href="#"><img src={image} alt={title} />
-                            <p>{title}<br />[{category}]</p>
-                            <span>₩ {price}</span></a>
+                        <img src={image} alt={title} />
+                        <p>{title}<br />[{category}]</p>
+                        <span>₩ {price}</span>
                     </div>
                 )
             }
