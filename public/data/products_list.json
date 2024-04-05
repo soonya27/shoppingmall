@@ -4,8 +4,8 @@
             "title": "HOLIDAY ZIPUP KNIT",
             "price": "98,000",
             "category": "여성",
-            "imageUrl": "/image/new_01",
-            "imageHoverURl": "/image/new_01-1",
+            "defaultImageUrl": "/image/new_01",
+            "hoverImageUrl": "/image/new_01-1",
             "id": "1",
             "descripct": "[BEIGE]"
         },
@@ -13,17 +13,17 @@
             "titl": "WAVE DOUBLE JACKET",
             "price": "139,000",
             "category": "여성",
-            "imageUrl": "/image/new_02",
-            "imageHoverURl": "/image/new_02-1",
+            "defaultImageUrl": "/image/new_02",
+            "hoverImageUrl": "/image/new_02-1",
             "id": "2",
             "descripct": "[CHARCOAL]"
         },
         {
-            "titl": "WAVE DOUBLE CHECK JACKET",
-            "price": "139,000",
+            "titl": "2 WAY CROSS STRAP SWIMSUIT SET",
+            "price": "129,000",
             "category": "여성",
-            "imageUrl": "/image/new_03",
-            "imageHoverURl": "/image/new_03-1",
+            "defaultImageUrl": "/image/new_03",
+            "hoverImageUrl": "/image/new_03-1",
             "id": "3",
             "descripct": "[PINK CHECK]"
         },
@@ -31,8 +31,8 @@
             "titl": "WAVE DOUBLE CHECK JACKET2",
             "price": "159,000",
             "category": "여성",
-            "imageUrl": "/image/new_04",
-            "imageHoverURl": "/image/new_04-1",
+            "defaultImageUrl": "/image/new_04",
+            "hoverImageUrl": "/image/new_04-1",
             "id": "4",
             "descripct": "[PINK CHECK]"
         },
@@ -40,8 +40,8 @@
             "titl": "SHIRTS BUSTIER PUFF ONEPIECE<",
             "price": "159,000",
             "category": "여성",
-            "imageUrl": "/image/new_05",
-            "imageHoverURl": "/image/new_05-1",
+            "defaultImageUrl": "/image/new_05",
+            "hoverImageUrl": "/image/new_05-1",
             "id": "5",
             "descripct": "[BEIGE]"
         },
@@ -49,10 +49,14 @@
             "titl": "COLOR BLOCK FAUX LEATHER SKIRT<",
             "price": "102,000",
             "category": "여성",
-            "imageUrl": "/image/new_06",
-            "imageHoverURl": "/image/new_06-1",
+            "defaultImageUrl": "/image/new_06",
+            "hoverImageUrl": "/image/new_06-1",
             "id": "6",
             "descripct": "[BLACK]"
         }
+
+        COLOR BLOCK FAUX LEATHER SKIRT  102,
+        000  [BLACK
+        ]
     ]
 }

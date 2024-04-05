@@ -6,9 +6,9 @@ import UploadIcon from './../../components/ui/icons/UploadIcon';
 import { uploadImage } from '../../api/uploader';
 
 
+const inputArr = ['default', 'hover'];
 export default function AddProduct() {
     const [form, setForm] = useState({
-        file: '',
         title: '',
         price: '',
         category: '',
@@ -16,7 +16,7 @@ export default function AddProduct() {
         options: '',
     });
     //cloudnairy -> upload된 이미지 사용
-    const [file, setFile] = useState();
+    const [file, setFile] = useState({ default: '', hover: '' });
     // const handleClick = () => {
     //     addNewProduct();
     // }
@@ -25,22 +25,28 @@ export default function AddProduct() {
         console.log(data);
     }
     const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        if (name === 'file') {
-            setFile(files[0]);
+        const { name, value, type, files } = e.target;
+        if (type === 'file') {
+            const fileValue = name === 'file_default' ? 'default' : 'hover';
+            setFile(prev => ({ ...prev, [fileValue]: files[0] }));
             return;
         }
         setForm(prev => ({ ...prev, [name]: value }))
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!file) return;
+        // if (!file) return;
+        if (!Object.values(file).every(item => item)) return;
+
 
         //cloudnary에 업로드 후 url획득 
-        uploadImage(file)
-            .then(url => {
-                // console.log(url);
-                addNewProduct(form, url);
+        uploadImage(file.default)
+            .then(defaultImageUrl => {
+                uploadImage(file.hover)
+                    .then(hoverImageUrl => {
+                        console.log(defaultImageUrl, hoverImageUrl)
+                        addNewProduct(form, { defaultImageUrl, hoverImageUrl });
+                    })
             })
     }
     return (
@@ -49,27 +55,36 @@ export default function AddProduct() {
             <form onSubmit={handleSubmit} className={styles.form}>
                 {/* 제품명 가격 카테고리 설명 옵션 */}
                 {
-                    file ? (
-                        <div className={styles.preview_wrap}>
-                            <img className={styles.preview} src={URL.createObjectURL(file)} alt="" />
-                            <input type="file" name="file" id="fileUpload" accept='image/*' onChange={handleChange}
-                                className={styles.file_upload_input} />
-                            <label htmlFor="fileUpload" className={styles.file_upload_label}>
-                                Upload
-                            </label>
-                        </div>
-                    ) : (
-                        <div className={styles.file_upload}>
-                            <span>
-                                <UploadIcon />
-                            </span>
-                            <p>Upload Image</p>
-                            <input type="file" name="file" id="fileUpload" accept='image/*' onChange={handleChange}
-                                className={styles.file_upload_input} />
-                            <label htmlFor="fileUpload" className={styles.file_upload_label}>
-                                Upload
-                            </label>
-                        </div>
+                    inputArr.map(input => {
+                        return file[input] ? (
+                            <div key={input}>
+                                <h2>{input} image</h2>
+                                <div className={styles.preview_wrap}>
+                                    <img className={styles.preview} src={URL.createObjectURL(file[input])} alt="" />
+                                    <input type="file" name={`file_${input}`} id={`fileUpload_${input}`} accept='image/*' onChange={handleChange}
+                                        className={styles.file_upload_input} />
+                                    <label htmlFor={`fileUpload_${input}`} className={styles.file_upload_label}>
+                                        Upload
+                                    </label>
+                                </div>
+                            </div>
+                        ) : (
+                            <div key={input}>
+                                <h2>{input} image</h2>
+                                <div className={styles.file_upload} key={input}>
+                                    <span>
+                                        <UploadIcon />
+                                    </span>
+                                    <p>Upload Image</p>
+                                    <input type="file" name={`file_${input}`} id={`fileUpload_${input}`} accept='image/*' onChange={handleChange}
+                                        className={styles.file_upload_input} />
+                                    <label htmlFor={`fileUpload_${input}`} className={styles.file_upload_label}>
+                                        Upload
+                                    </label>
+                                </div>
+                            </div>
+                        )
+                    }
                     )
                 }
 

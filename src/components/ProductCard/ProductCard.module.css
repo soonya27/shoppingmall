@@ -6,21 +6,31 @@
     position: relative;
     display: block;
     box-sizing: border-box;
+    overflow: hidden;
 }
+
 
 .pc:hover .mask {
     opacity: 0;
 }
-
 
 .pc:hover .hover {
     opacity: 1;
 }
 
 .pc .mask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     text-align: center;
-    transition: all 0.6s;
+    transition: all 0.2s;
     opacity: 1;
+}
+
+.pc .mask img {
+    padding: 30px 10%;
+    width: auto;
 }
 
 .pc .hover {
@@ -33,12 +43,20 @@
     transition: all 0.2s;
 }
 
+.pc .hover>img {
+    width: auto;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
 .pc .txt {
     position: absolute;
     bottom: 5%;
     left: 5%;
     transition: all 0.2s;
-    width: 100%;
     color: #fff;
     z-index: 10;
 }

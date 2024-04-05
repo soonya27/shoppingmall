@@ -6,7 +6,7 @@ import { useMediaQueryContext } from '../context/MediaQueryContext';
 
 export default function ProductCard({ product }) {
     const { isPc } = useMediaQueryContext();
-    const { category, image, title, price, id } = product;
+    const { category, defaultImageUrl, hoverImageUrl, title, price, id } = product;
     const navigate = useNavigate();
     const handleClick = () => {
         navigate(`/products/${id}`, { state: { product } });
@@ -26,9 +26,9 @@ export default function ProductCard({ product }) {
             {
                 isPc ? (
                     <div className={styles.pc}>
-                        <div className={styles.mask}><img src={image} alt={title} /></div>
+                        <div className={styles.mask}><img src={defaultImageUrl} alt={title} /></div>
                         <div className={styles.hover}>
-                            <img src={image} alt={`${title}_hover_img`} />
+                            <img src={hoverImageUrl} alt={`${title}_hover_img`} />
                             <div className={styles.txt}>
                                 <strong>{title}<br />
                                     [{category}]</strong>
@@ -39,7 +39,7 @@ export default function ProductCard({ product }) {
                     </ div>
                 ) : (
                     <div className="swiper-slide">
-                        <img src={image} alt={title} />
+                        <img src={hoverImageUrl} alt={title} />
                         <p>{title}<br />[{category}]</p>
                         <span>₩ {price}</span>
                     </div>

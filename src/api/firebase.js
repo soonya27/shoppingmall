@@ -55,13 +55,14 @@ async function adminUser(user) {
 }
 
 
-export async function addNewProduct(product, image) {
+export async function addNewProduct(product, { defaultImageUrl, hoverImageUrl }) {
     const id = uuid();
     set(ref(database, 'products/' + id), {
         ...product,
         id,
         price: product.price,
-        image,
+        defaultImageUrl,
+        hoverImageUrl,
         options: product.options.split(','),
     });
 }

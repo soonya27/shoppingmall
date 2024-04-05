@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Main.module.css';
 import Visual from '../../components/Visual/Visual';
 import Promotion from '../../components/Promotion/Promotion';
-import NewProducts from '../../components/NewProducts/NewProducts';
+import ProductsList from '../../components/ProductsList/ProductsList';
 
 export default function Main() {
 
@@ -10,7 +10,8 @@ export default function Main() {
         <main>
             <Visual />
             <Promotion />
-            <NewProducts />
+            <ProductsList type="new" />
+            <ProductsList type="best" />
             <div className={styles.kakao}>
                 <div className={`inner ${styles.inner}`}>
                     <strong>O!OiCOLLECTION KAKAO FRIEND</strong>
