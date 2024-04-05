@@ -2,7 +2,8 @@ import { initializeApp } from "firebase/app";
 import {
     getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged,
 } from "firebase/auth";
-import { getDatabase, ref, get, child } from "firebase/database";
+import { getDatabase, ref, get, child, update, set } from "firebase/database";
+import { v4 as uuid } from 'uuid';
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -23,7 +24,6 @@ export function login() {
     //     }).catch(console.error)
     signInWithPopup(auth, provider)
         .catch(console.error)
-
 }
 export function logout() {
     // return signOut(auth).then(() => null).catch((error) => {
@@ -40,7 +40,6 @@ export function onUserStateChange(callback) {
     });
 }
 
-
 async function adminUser(user) {
     return get(child(ref(database), `admins`)).then((snapshot) => {
         if (snapshot.exists()) {
@@ -56,20 +55,15 @@ async function adminUser(user) {
 }
 
 
-export async function addNewProduct() {
-    // const postData = {
-    //     author: 'username',
-    //     uid: 'uid',
-    //     body: 'body',
-    //     title: 'title',
-    //     starCount: 0,
-    //     authorPic: 'picture'
-    // };
-    // const updates = {};
-
-    // updates['/products/' + 0].push(postData);
-    // console.log(updates);
-    // return update(ref(database), updates);
+export async function addNewProduct(product, image) {
+    const id = uuid();
+    set(ref(database, 'products/' + id), {
+        ...product,
+        id,
+        price: product.price,
+        image,
+        options: product.options.split(','),
+    });
 }
 
 

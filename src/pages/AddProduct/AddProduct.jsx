@@ -37,11 +37,10 @@ export default function AddProduct() {
         if (!file) return;
 
         //cloudnary에 업로드 후 url획득 
-        // console.log(file)
-        // console.log(form)
         uploadImage(file)
             .then(url => {
-                console.log(url)
+                // console.log(url);
+                addNewProduct(form, url);
             })
     }
     return (
