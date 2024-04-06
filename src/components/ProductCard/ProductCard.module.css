@@ -79,3 +79,15 @@
     top: 5%;
     right: 5%;
 }
+
+.mobile {
+    position: relative;
+}
+
+.mobile .icon {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    width: 3vw;
+    z-index: 10;
+}

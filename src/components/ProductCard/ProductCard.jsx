@@ -38,10 +38,11 @@ export default function ProductCard({ product }) {
                         </div>
                     </ div>
                 ) : (
-                    <div className="swiper-slide">
+                    <div className={styles.mobile}>
                         <img src={hoverImageUrl} alt={title} />
                         <p>{title}<br />[{category}]</p>
                         <span>₩ {price}</span>
+                        <p className={styles.icon}><img src="/image/icon/like_icon.png" alt="" /></p>
                     </div>
                 )
             }
