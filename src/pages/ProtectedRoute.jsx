@@ -11,7 +11,7 @@ export default function ProtectedRoute({ children, requireAdmin }) {
     // const navigate = useNavigate();
     if (!user || (requireAdmin && !user.isAdmin)) {
         // navigate('/', { replace: false })
-        // return <Navigate to="/" replace />
+        return <Navigate to="/" replace />
     }
     return (
         <>

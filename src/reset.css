@@ -284,6 +284,16 @@ h6 {
 
 @media screen and (max-width : 1024px) {
     a {
-        font-size: 3vw;
+        font-size: 4vw;
     }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 3.889vw;
+    }
+
 }

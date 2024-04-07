@@ -39,7 +39,7 @@
 
 .menu_icon {
     display: block;
-    height: 24px;
+    font-size: 1.4rem;
 }
 
 .menu_icon svg {
@@ -58,6 +58,6 @@
 
 @media screen and (max-width: 1024px) {
     .menu_icon {
-        height: 1.5rem;
+        font-size: 1.4rem;
     }
 }

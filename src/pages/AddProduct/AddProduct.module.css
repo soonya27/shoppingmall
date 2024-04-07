@@ -5,6 +5,12 @@
     margin: 0 0 .8rem;
 }
 
+.form h2 {
+    margin-bottom: 1vw;
+    font-weight: bold;
+    font-size: 4.5vw;
+}
+
 .form input {
     width: 100%;
     padding: 0.5rem .6rem;

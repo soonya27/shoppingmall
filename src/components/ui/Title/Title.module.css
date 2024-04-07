@@ -14,4 +14,10 @@
 }
 
 
-@media screen {}
+@media screen and (max-width:768px) {
+    .title {
+        font-size: 4.7vw;
+        margin-top: 6vw;
+        margin-bottom: 8vw;
+    }
+}

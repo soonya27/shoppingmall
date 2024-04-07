@@ -65,6 +65,7 @@
     display: block;
     color: #fff;
     font-size: 18px;
+    line-height: 1.08;
 }
 
 .pc .txt span {
@@ -91,3 +92,27 @@
     width: 3vw;
     z-index: 10;
 }
+
+.mobile .txt {
+    margin-top: .5vw;
+}
+
+.mobile .txt strong {
+    font-size: 3vw;
+    line-height: 1;
+
+}
+
+.mobile .txt .category {
+    color: #000;
+    font-size: 2.5vw;
+    font-weight: bold;
+}
+
+.mobile .txt span {
+    display: block;
+    font-size: 3vw;
+}
+
+
+@media screen and (max-width:768px) {}

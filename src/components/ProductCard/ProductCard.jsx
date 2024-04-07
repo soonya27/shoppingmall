@@ -30,8 +30,8 @@ export default function ProductCard({ product }) {
                         <div className={styles.hover}>
                             <img src={hoverImageUrl} alt={`${title}_hover_img`} />
                             <div className={styles.txt}>
-                                <strong>{title}<br />
-                                    [{category}]</strong>
+                                <strong>{title}</strong>
+                                <p>[{category}]</p>
                                 <span>₩ {price}</span>
                             </div>
                             <p className={styles.icon}><img src="/image/icon/like_icon.png" alt="" /></p>
@@ -40,8 +40,11 @@ export default function ProductCard({ product }) {
                 ) : (
                     <div className={styles.mobile}>
                         <img src={hoverImageUrl} alt={title} />
-                        <p>{title}<br />[{category}]</p>
-                        <span>₩ {price}</span>
+                        <div className={styles.txt}>
+                            <p className={styles.category}>[{category}]</p>
+                            <strong>{title}</strong>
+                            <span>₩ {price}</span>
+                        </div>
                         <p className={styles.icon}><img src="/image/icon/like_icon.png" alt="" /></p>
                     </div>
                 )

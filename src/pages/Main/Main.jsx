@@ -7,7 +7,7 @@ import ProductsList from '../../components/ProductsList/ProductsList';
 export default function Main() {
 
     return (
-        <main>
+        <section>
             <Visual />
             <Promotion />
             <ProductsList type="new" />
@@ -20,7 +20,7 @@ export default function Main() {
                     <p className={styles.more}><a href="#">친추하기</a></p>
                 </div>
             </div>
-        </main>
+        </section>
     );
 }
 
