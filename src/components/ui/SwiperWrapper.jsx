@@ -4,13 +4,15 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 
-export default function SwiperWrapper({ children }) {
+
+export default function SwiperWrapper({ children, isPagination = true }) {
+    const pagination = isPagination ? { type: 'fraction' } : ''
     return (
         <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
             slidesPerView={1}
-            pagination={{ type: 'fraction' }}
-            autoplay
+            pagination={pagination}
+            autoplay={{ delay: 5000 }}
             loop
         >
             {children}

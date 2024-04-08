@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2%;
+}
+
+.imgWrap {
+    overflow: hidden;
+}
+
+.imgWrap img {}
+
+.txt {
+    flex: 1;
+}
+
+.txt .descripct {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+
+
+@media screen and (max-width : 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+
+}

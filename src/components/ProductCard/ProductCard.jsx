@@ -9,6 +9,7 @@ export default function ProductCard({ product }) {
     const { category, defaultImageUrl, hoverImageUrl, title, price, id } = product;
     const navigate = useNavigate();
     const handleClick = () => {
+        //param으로 객체 전달
         navigate(`/products/${id}`, { state: { product } });
     }
     return (
