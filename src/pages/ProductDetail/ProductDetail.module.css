@@ -16,9 +16,38 @@
 
 .txt .descripct {
     border-bottom: 1px solid #dcdcdc;
+    padding: 0 0 .8rem;
 }
 
+.txt .options_wrap {
+    display: flex;
+    gap: .3rem;
+}
 
+.txt .options_wrap .option input {
+    display: none;
+}
+
+.txt .options_wrap .option input+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #dcdcdc;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: .2rem;
+    font-size: .8rem;
+}
+
+.txt .options_wrap .option input:checked+label {
+    background: #dcdcdc;
+    color: #fff;
+}
+
+.btn_icon {
+    width: 1.4rem;
+    margin: 0 .3rem 0 0;
+}
 
 @media screen and (max-width : 1024px) {
     .container {

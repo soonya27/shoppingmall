@@ -1,0 +1,11 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.5rem 0;
+    background: linear-gradient(103.83deg, #FF7000 -1.35%, #E5132E 34.57%, #E5132E 64.16%, #DE007E 92.04%);
+    font-size: 0.9rem;
+    text-align: center;
+    color: #fff;
+}

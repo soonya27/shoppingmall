@@ -4,6 +4,7 @@ import Title from './../../components/ui/Title/Title';
 import styles from './AddProduct.module.css'
 import UploadIcon from './../../components/ui/icons/UploadIcon';
 import { uploadImage } from '../../api/uploader';
+import Button from '../../components/ui/Button/Button';
 
 
 const inputArr = ['default', 'hover'];
@@ -20,10 +21,6 @@ export default function AddProduct() {
     // const handleClick = () => {
     //     addNewProduct();
     // }
-    const handleClickGet = async () => {
-        const data = await getProduct();
-        console.log(data);
-    }
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
         if (type === 'file') {
@@ -52,7 +49,7 @@ export default function AddProduct() {
     return (
         <div className='inner'>
             <Title text="Products" highlight="Add New" />
-            <form onSubmit={handleSubmit} className={styles.form}>
+            <form className={styles.form} onSubmit={handleSubmit}>
                 {/* 제품명 가격 카테고리 설명 옵션 */}
                 {
                     inputArr.map(input => {
@@ -93,14 +90,7 @@ export default function AddProduct() {
                 <input type="text" placeholder='category' name='category' value={form.category} onChange={handleChange} required />
                 <input type="text" placeholder='description' name='description' value={form.description} onChange={handleChange} required />
                 <input type="text" placeholder='options' name='options' value={form.options} onChange={handleChange} required />
-                <button type="submit"
-                >
-                    submit
-                </button>
-                <button type="button"
-                    onClick={handleClickGet}>
-                    조회
-                </button>
+                <Button type='submit'>submit</Button>
             </form >
 
         </div >
