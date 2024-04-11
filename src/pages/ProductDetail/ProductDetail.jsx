@@ -3,12 +3,29 @@ import { useLocation } from 'react-router-dom';
 import styles from './ProductDetail.module.css';
 import AddCartIcon from '../../components/ui/icons/AddCartIcon';
 import Button from '../../components/ui/Button/Button';
+import { addCartsByUser } from '../../api/firebase';
+import { useAuthContent } from '../../components/context/AuthContext';
 
 
 export default function ProductDetail() {
-    const { state: { product: { category, defaultImageUrl, hoverImageUrl, title, price, id, descripct, options } } } = useLocation();
-    const [option, setOption] = useState(options[0]);
-    const handleChange = (e) => setOption(e.target.value)
+    const { state: { product, product: { category, defaultImageUrl, hoverImageUrl, title, price, id, descripct, options } } } = useLocation();
+    const [option, setOption] = useState({ size: options[0], itemNum: 1 });
+    const handleChange = (e) => setOption((prev => ({ ...prev, [e.target.name]: e.target.value })));
+    const { user } = useAuthContent();
+
+    const handleSubmit = () => {
+        // console.log(option, id);
+        //login 돼있으면 -> user 아이디..같이
+        //아니라면 localstorage
+        if (user) {
+            addCartsByUser({
+                id, size: option.size, itemNum: option.itemNum, user: user.uid,
+                product
+            });
+        } else {
+            //localStorage
+        }
+    }
     return (
         <div className='inner'>
             <div className={styles.container}>
@@ -34,14 +51,18 @@ export default function ProductDetail() {
                             {
                                 options.map((item, idx) => (
                                     <div key={item} className={styles.option}>
-                                        <input type="radio" name="options" id={`option_${item}`} value={item} onChange={handleChange} checked={option === item} />
+                                        <input type="radio" name="size" id={`option_${item}`} value={item} onChange={handleChange} checked={option.size === item} />
                                         <label htmlFor={`option_${item}`} >{item}</label>
                                     </div>
                                 ))
                             }
                         </div>
+                        <div className={styles.item_size}>
+                            <input type="number" name="itemNum" id="" value={option.itemNum} onChange={handleChange} />
+                            <p>개</p>
+                        </div>
                     </div>
-                    <Button>
+                    <Button onClick={handleSubmit}>
                         <p className={styles.btn_icon}><AddCartIcon /></p>Add Cart
                     </Button>
                 </div>

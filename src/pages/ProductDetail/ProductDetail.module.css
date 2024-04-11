@@ -44,6 +44,20 @@
     color: #fff;
 }
 
+.txt .item_size {
+    display: flex;
+    align-items: center;
+}
+
+.txt .item_size input {
+    width: 3rem;
+    margin: 0 .5rem 0 0;
+    border: 1px solid #dcdcdc;
+    border-radius: .3rem;
+    text-align: center;
+
+}
+
 .btn_icon {
     width: 1.4rem;
     margin: 0 .3rem 0 0;

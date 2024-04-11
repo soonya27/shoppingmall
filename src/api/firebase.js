@@ -67,6 +67,14 @@ export async function addNewProduct(product, { defaultImageUrl, hoverImageUrl })
     });
 }
 
+export async function addCartsByUser({ id, size, itemNum, user, product }) {
+    set(ref(database, 'carts/' + user + '/products/' + id), {
+        product,
+        id,
+        size,
+        itemNum
+    });
+}
 
 
 export async function getProduct() {
@@ -81,6 +89,21 @@ export async function getProduct() {
         console.error(error);
     });
 }
+
+
+
+export async function getCartProduct(uid) {
+    return get(child(ref(database), `carts/${uid}/products`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            const data = Object.values(snapshot.val())
+            return data;
+        }
+        return [];
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
 
 
 
