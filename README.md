@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Shoppingmall site (오아이오아이 리디자인 웹페이지)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## [website link](https://master--glowing-sundae-46f2fe.netlify.app/)
 
-## Available Scripts
+📸🌟  🚀
 
-In the project directory, you can run:
+###
 
-### `yarn start`
+(이 프로젝트는 오아이오아이 쇼핑몰 사이트를 리디자인, 리뉴얼 한 웹 사이트 입니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+프론트엔드에는 React, 백엔드 및 데이터베이스에는 firebase를 사용하여 구축되었습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+어드민 사용자와 일반 사용자에 따라 새 제품을 등록 할 수 있고, 장바구니에 상품을 추가 할 수 있습니다.
 
-### `yarn test`
+( 로그인을 하면 데이터베이스에 추가되고, 로그인을 안할시에는 localstorage에 저장이 됨
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+좋아요 -> 로그인시에만 가능. 데이터베이스에 추가)
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Netlify를 이용하여 배포하였습니다.)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## 🌟Features (주요 기능)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- User account creation and authentication with google (google을 통한 사용자 계정 생성 및 로그인) - Firebase
+- (사용자별 권한에 따른 페이지 구분 일반사용자, 어드민사용자 : 메뉴바에 new추가, 제품페이지 접근권한)
+- (로그인한 사용자가 쇼핑카트에 제품추가, 좋아요 제품목록을 데이터베이스에 저장, 데이터 불러오기)
+- (로그인하지 않은 사용자가 쇼핑카트 제품추가하면 localstorage에 저장)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🌟Tech Stack (기술 스택)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Frontend:**
+  - React.js
+  - Javascript
 
-## Learn More
+  - react-router-dom
+  - react-query
+  - axios
+  - react-responsive
+  - swiper
+  - uuid
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Backend:**
+  - Firebase
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Others:**
+  - Git (Version control)
+  - Prettier (Code formatting and static analysis)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Deployment:**
+  - Netlify
 
-### Analyzing the Bundle Size
+## 🌟Feedback
+I'm always looking to improve! If you have any feedback, suggestions, or bug reports, feel free to open an issue or reach out to me directly.
+Thank you for visiting my portfolio website!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+( 항상 개선을 위한 피드백, 제안 또는 버그 신고를 환영합니다! 언제든지 문제를 제기하거나 저에게 직접 문의해 주세요.
+ 제 홈페이지를 방문해 주셔서 감사합니다!)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
