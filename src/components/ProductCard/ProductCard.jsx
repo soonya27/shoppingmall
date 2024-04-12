@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
-import { useMediaQueryContext } from '../context/MediaQueryContext';
+import { useMediaQueryContext } from '../../context/MediaQueryContext';
 
 
 export default function ProductCard({ product }) {

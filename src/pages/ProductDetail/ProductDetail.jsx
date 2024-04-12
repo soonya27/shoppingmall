@@ -4,7 +4,7 @@ import styles from './ProductDetail.module.css';
 import AddCartIcon from '../../components/ui/icons/AddCartIcon';
 import Button from '../../components/ui/Button/Button';
 import { addCartsByUser } from '../../api/firebase';
-import { useAuthContent } from '../../components/context/AuthContext';
+import { useAuthContent } from '../../context/AuthContext';
 
 
 export default function ProductDetail() {
@@ -24,6 +24,7 @@ export default function ProductDetail() {
             });
         } else {
             //localStorage
+            console.log('비로그인 장바구니담기')
         }
     }
     return (

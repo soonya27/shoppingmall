@@ -9,7 +9,7 @@ export default function CartListByUser({ uid }) {
         data: products
     } = useQuery({
         queryKey: ['carts'],
-        queryFn: async () => getCartProduct(uid)
+        queryFn: async () => getCartProduct(uid),
     })
 
     const [option, setOption] = useState({ size: '', itemNum: 0 });

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Visual.module.css';
 import SwiperWrapper from './../ui/SwiperWrapper';
 import { SwiperSlide } from 'swiper/react';
-import { useMediaQueryContext } from '../context/MediaQueryContext';
+import { useMediaQueryContext } from '../../context/MediaQueryContext';
 
 
 

@@ -95,8 +95,7 @@ export async function getProduct() {
 export async function getCartProduct(uid) {
     return get(child(ref(database), `carts/${uid}/products`)).then((snapshot) => {
         if (snapshot.exists()) {
-            const data = Object.values(snapshot.val())
-            return data;
+            return Object.values(snapshot.val());
         }
         return [];
     }).catch((error) => {

@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './Cart.module.css';
-import { useAuthContent } from '../../components/context/AuthContext';
 import CartListByUser from '../../components/CartsListByUser/CartListByUser';
 import CartListNotUser from '../../components/CartListNotUser/CartListNotUser';
+import { useAuthContent } from '../../context/AuthContext';
 
 export default function Cart() {
     //카운트.. 삭제, 
     //불러오기  (user -> firebase  , !user -> localstorage)
 
-    const { user } = useAuthContent();
+    const { user, uid } = useAuthContent();
 
 
     return (
@@ -23,7 +23,7 @@ export default function Cart() {
             </ul>
             {
                 user ? (
-                    <CartListByUser uid={user.uid} />
+                    <CartListByUser uid={uid} />
                 ) : (
                     <CartListNotUser />
                 )

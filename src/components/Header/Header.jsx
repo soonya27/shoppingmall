@@ -6,8 +6,10 @@ import AllmenuIcon from './../ui/icons/AllMenuIcon';
 import User from '../User/User';
 import ModalPortal from '../ui/icons/ModalPortal';
 import AllMenu from './../AllMenu/AllMenu';
-import { useAuthContent } from '../context/AuthContext';
 import UserIcon from './../ui/icons/UserIcon';
+import { getCartProduct } from '../../api/firebase';
+import { useQuery } from '@tanstack/react-query';
+import { useAuthContent } from '../../context/AuthContext';
 
 export default function Header() {
     //로그인여부 체크 -> 아이디표시, 로그인 버튼 변화 , 장바구니 불러오기 (갯수 표시)
@@ -22,7 +24,14 @@ export default function Header() {
     //         setUser(user);
     //     });
     // }, []);
-    const { user, login } = useAuthContent();
+    const { user, uid, login } = useAuthContent();
+
+    const {
+        data: products
+    } = useQuery({
+        queryKey: ['carts'],
+        queryFn: () => getCartProduct(uid),
+    })
 
     return (
         <header className={styles.header}>
@@ -58,8 +67,8 @@ export default function Header() {
                     {/* {user && ( */}
                     <li><Link to="/cart" className={styles.menu_icon}>
                         <ShoppingbagIcon />
+                        {products && (<p>{products.length}</p>)}
                     </Link></li>
-                    {/* )} */}
                     {user && <li><User user={user} /></li>}
                     {!user && <li><button className={styles.button} type="button" onClick={login}>
                         <UserIcon />
