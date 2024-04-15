@@ -12,7 +12,7 @@ export default function Cart() {
 
 
     return (
-        <div>
+        <div className='inner'>
             <h2>내 장바구니</h2>
             <ul className={styles.listWrap}>
                 {/* {

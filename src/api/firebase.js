@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import {
     getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged,
 } from "firebase/auth";
-import { getDatabase, ref, get, child, update, set } from "firebase/database";
+import { getDatabase, ref, get, child, update, set, remove } from "firebase/database";
 import { v4 as uuid } from 'uuid';
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -68,12 +68,25 @@ export async function addNewProduct(product, { defaultImageUrl, hoverImageUrl })
 }
 
 export async function addCartsByUser({ id, size, itemNum, user, product }) {
-    set(ref(database, 'carts/' + user + '/products/' + id), {
+    set(ref(database, 'carts/' + user + '/' + id), {
         product,
         id,
         size,
         itemNum
     });
+}
+
+export async function addOrUpdateToCart({ id, size, itemNum, user, product }) {
+    return set(ref(database, 'carts/' + user + '/' + id), {
+        product,
+        id,
+        size,
+        itemNum
+    });
+}
+
+export async function removeFromCart(user, productId) {
+    return remove(ref(database, 'carts/' + user + '/' + productId));
 }
 
 
@@ -93,7 +106,7 @@ export async function getProduct() {
 
 
 export async function getCartProduct(uid) {
-    return get(child(ref(database), `carts/${uid}/products`)).then((snapshot) => {
+    return get(child(ref(database), `carts/${uid}`)).then((snapshot) => {
         if (snapshot.exists()) {
             return Object.values(snapshot.val());
         }
@@ -102,6 +115,7 @@ export async function getCartProduct(uid) {
         console.error(error);
     });
 }
+
 
 
 

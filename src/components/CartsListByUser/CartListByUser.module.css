@@ -1,0 +1,25 @@
+.list li {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.list li img {
+    width: 20%;
+    max-width: 140px;
+    flex-grow: 0;
+}
+
+.list li .text_wrap {
+    flex-grow: 1;
+}
+
+.list input[type=number] {
+    width: 2rem;
+}
+
+.list input[type=number]::-webkit-outer-spin-button,
+.list input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
