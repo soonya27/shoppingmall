@@ -29,8 +29,9 @@ export default function Header() {
     const {
         data: products
     } = useQuery({
-        queryKey: ['carts'],
+        queryKey: ['carts', uid || ''],
         queryFn: () => getCartProduct(uid),
+        enabled: !!uid
     })
 
     return (
@@ -67,7 +68,7 @@ export default function Header() {
                     {/* {user && ( */}
                     <li><Link to="/cart" className={styles.menu_icon}>
                         <ShoppingbagIcon />
-                        {products && (<p>{products.length}</p>)}
+                        {products && (<p className={styles.carts_length}>{products.length}</p>)}
                     </Link></li>
                     {user && <li><User user={user} /></li>}
                     {!user && <li><button className={styles.button} type="button" onClick={login}>
