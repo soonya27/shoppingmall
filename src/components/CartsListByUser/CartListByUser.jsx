@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { getCartProduct } from '../../api/firebase';
 import styles from './CartListByUser.module.css';
+import CartItem from '../CartItem/CartItem';
 
 
 export default function CartListByUser({ uid }) {
@@ -13,28 +14,17 @@ export default function CartListByUser({ uid }) {
         queryKey: ['carts'],
         queryFn: async () => getCartProduct(uid),
     })
+    if (products) {
+        products.map(item => {
+            console.log(item.itemNum)
+        })
+    }
 
-    const [option, setOption] = useState({ size: '', itemNum: 0 });
-    const handleChange = (e) => setOption((prev => ({ ...prev, [e.target.name]: e.target.value })));
     return (
-        <ul className={styles.list}>
+        <ul className={styles.cart_list}>
             {
-                products && products.map(({ id, product: { hoverImageUrl, options }, size, itemNum }) => (
-                    <li key={id}>
-                        <img src={hoverImageUrl} alt="" />
-                        <div className={styles.text_wrap}>
-                            <p>size : {size}</p>
-                            <select name="size" id="" value={size} onChange={handleChange}>
-                                {
-                                    options.map(item => (
-                                        <option value={item} key={item} >{item}</option>
-                                    ))
-                                }
-                            </select>
-                            <input type="number" name="itemNum" id="" value={itemNum} onChange={handleChange} />
-                            <span>개</span>
-                        </div>
-                    </li>
+                products && products.map((product) => (
+                    <CartItem product={product} key={product.id} uid={uid} />
                 ))
             }
         </ul>

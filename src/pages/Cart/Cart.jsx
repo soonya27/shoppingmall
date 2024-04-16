@@ -3,13 +3,12 @@ import styles from './Cart.module.css';
 import CartListByUser from '../../components/CartsListByUser/CartListByUser';
 import CartListNotUser from '../../components/CartListNotUser/CartListNotUser';
 import { useAuthContent } from '../../context/AuthContext';
+import Button from '../../components/ui/Button/Button';
 
 export default function Cart() {
-    //카운트.. 삭제, 
     //불러오기  (user -> firebase  , !user -> localstorage)
 
     const { user, uid } = useAuthContent();
-
 
     return (
         <div className='inner'>
@@ -42,7 +41,9 @@ export default function Cart() {
                         <span></span>
                     </div>
                 </div>
-                <button type="button">주문하기</button>
+                <Button>
+                    주문하기
+                </Button>
 
             </div>
         </div>

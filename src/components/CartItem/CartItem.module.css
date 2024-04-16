@@ -1,0 +1,81 @@
+.list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+
+.list img {
+    width: 20%;
+    max-width: 100px;
+    flex-grow: 0;
+    margin: 0 1rem 0 0;
+    cursor: pointer;
+}
+
+
+.list input[type=number] {
+    width: 1rem;
+    height: 1rem;
+    text-align: center;
+}
+
+.list input[type=number]::-webkit-outer-spin-button,
+.list input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.list .text_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: .4rem;
+}
+
+
+.text_wrap .descript_wrap {
+    flex-grow: 1;
+}
+
+.text_wrap .descript_wrap .title {
+    margin: 0 0 .3rem;
+    font-size: .8rem;
+}
+
+.text_wrap .descript_wrap .price {
+    color: #000;
+    margin: .35rem 0 0;
+    font-weight: bold;
+    font-size: .8rem;
+}
+
+
+.list .itemNumInput_wrap {
+    flex-basis: 4.5rem;
+    display: flex;
+    gap: 0.2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list .itemNumInput_wrap button {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    border: 1px solid #000;
+    padding: 0 .2rem;
+    background: #000;
+    color: #fff;
+}
+
+.list .itemNumInput_wrap button {}
+
+.btn_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #6d6d6d;
+}

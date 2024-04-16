@@ -4,6 +4,13 @@
     column-gap: 2%;
 }
 
+.btn_back {
+    display: flex;
+    width: 2rem;
+    padding: .4rem .3rem;
+    box-sizing: border-box;
+}
+
 .imgWrap {
     overflow: hidden;
 }

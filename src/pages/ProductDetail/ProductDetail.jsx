@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './ProductDetail.module.css';
 import AddCartIcon from '../../components/ui/icons/AddCartIcon';
 import Button from '../../components/ui/Button/Button';
 import { addCartsByUser } from '../../api/firebase';
 import { useAuthContent } from '../../context/AuthContext';
+import ArrowBackIcon from '../../components/ui/icons/ArrowBackIcon';
 
 
 export default function ProductDetail() {
@@ -12,6 +13,8 @@ export default function ProductDetail() {
     const [option, setOption] = useState({ size: options[0], itemNum: 1 });
     const handleChange = (e) => setOption((prev => ({ ...prev, [e.target.name]: e.target.value })));
     const { user } = useAuthContent();
+    const navigate = useNavigate();
+
 
     const handleSubmit = () => {
         // console.log(option, id);
@@ -27,9 +30,13 @@ export default function ProductDetail() {
             console.log('비로그인 장바구니담기')
         }
     }
+    const handleClick = (e) => {
+        navigate(-1);
+    }
     return (
         <div className='inner'>
             <div className={styles.container}>
+                <button type='button' onClick={handleClick} className={styles.btn_back}><ArrowBackIcon /></button>
                 <div className={styles.imgWrap}>
                     <img src={hoverImageUrl} alt="" />
                 </div>
