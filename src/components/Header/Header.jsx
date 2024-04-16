@@ -16,14 +16,6 @@ export default function Header() {
     //로그인 ok ->1.일반, 2. 어드민:메뉴 하나 추가(newProduct)
 
     const [allMenu, setAllMenu] = useState(false);
-
-    // const [user, setUser] = useState();
-    // useEffect(() => {
-    //     onUserStateChange((user) => {
-    //         // console.log(user);
-    //         setUser(user);
-    //     });
-    // }, []);
     const { user, uid, login } = useAuthContent();
 
     const {

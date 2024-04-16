@@ -4,6 +4,10 @@
     column-gap: 2%;
 }
 
+.navbar {
+    width: 100%;
+}
+
 .btn_back {
     display: flex;
     width: 2rem;
@@ -19,6 +23,9 @@
 
 .txt {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .txt .descripct {

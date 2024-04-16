@@ -35,8 +35,10 @@ export default function ProductDetail() {
     }
     return (
         <div className='inner'>
-            <div className={styles.container}>
+            <div className={styles.navbar}>
                 <button type='button' onClick={handleClick} className={styles.btn_back}><ArrowBackIcon /></button>
+            </div>
+            <div className={styles.container}>
                 <div className={styles.imgWrap}>
                     <img src={hoverImageUrl} alt="" />
                 </div>

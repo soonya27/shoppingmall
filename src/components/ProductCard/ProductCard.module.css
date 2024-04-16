@@ -75,10 +75,11 @@
     margin-top: 12px;
 }
 
-.pc .icon {
+.icon {
     position: absolute;
     top: 5%;
     right: 5%;
+    z-index: 10;
 }
 
 .mobile {
@@ -86,10 +87,10 @@
 }
 
 .mobile .icon {
-    position: absolute;
     top: 3%;
-    right: 5%;
     width: 3vw;
+    height: 3vw;
+    display: flex;
     z-index: 10;
 }
 

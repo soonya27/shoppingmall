@@ -2,16 +2,32 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 import { useMediaQueryContext } from '../../context/MediaQueryContext';
+import { addBookmarkByUser } from '../../api/firebase';
+import { useAuthContent } from '../../context/AuthContext';
+import HeartIcon from '../ui/icons/HeartIcon';
+import HeartFilledIcon from '../ui/icons/HeartIFilledcon';
 
 
 export default function ProductCard({ product }) {
     const { isPc } = useMediaQueryContext();
-    const { category, defaultImageUrl, hoverImageUrl, title, price, id } = product;
+    const { category, defaultImageUrl, hoverImageUrl, title, price, id, isBookmark } = product;
     const navigate = useNavigate();
-    const handleClick = () => {
+    const { uid } = useAuthContent();
+
+
+    const handleClick = (e) => {
         //param으로 객체 전달
+        if (Array.from(e.target.classList).includes('bookmark') || e.target.nodeName === 'svg') return;
         navigate(`/products/${id}`, { state: { product } });
     }
+    const handleBookmark = () => {
+        if (!uid) {
+            console.log('로그인해주세요')
+            return;
+        }
+        addBookmarkByUser({ user: uid, product });
+    }
+
     return (
         // <li onClick={handleClick} className={styles.list}>
         //     <div>
@@ -35,7 +51,9 @@ export default function ProductCard({ product }) {
                                 <p>[{category}]</p>
                                 <span>₩ {price}</span>
                             </div>
-                            <p className={styles.icon}><img src="/image/icon/like_icon.png" alt="" /></p>
+                            <p className={`bookmark ${styles.icon}`} onClick={handleBookmark}>
+                                {isBookmark ? <HeartFilledIcon /> : <HeartIcon />}
+                            </p>
                         </div>
                     </ div>
                 ) : (
@@ -46,7 +64,9 @@ export default function ProductCard({ product }) {
                             <strong>{title}</strong>
                             <span>₩ {price}</span>
                         </div>
-                        <p className={styles.icon}><img src="/image/icon/like_icon.png" alt="" /></p>
+                        <p className={`bookmark ${styles.icon}`} onClick={handleBookmark}>
+                            {isBookmark ? <HeartFilledIcon /> : <HeartIcon />}
+                        </p>
                     </div>
                 )
             }

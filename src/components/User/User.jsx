@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './User.module.css';
 import { logout } from '../../api/firebase';
 import LogoutIcon from './../ui/icons/LogoutIcon';
+import { Link } from 'react-router-dom';
 
 
 export default function User({ user: { photoURL, displayName } }) {
@@ -16,6 +17,7 @@ export default function User({ user: { photoURL, displayName } }) {
                         </div>
                         <div className={styles.pop_over}>
                             <p>{displayName}</p>
+                            <Link to='/bookmark' >bookmark</Link>
                             <button className={styles.logoutBtn} type="button" onClick={logout}>
                                 <span><LogoutIcon /></span>logout
                             </button>

@@ -12,6 +12,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
 import ProtectedRoute from './pages/ProtectedRoute';
 import AddProduct from './pages/AddProduct/AddProduct';
+import Bookmark from './pages/Bookmark/Bookmark';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,12 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/bookmark",
+        element: <ProtectedRoute>
+          <Bookmark />
+        </ProtectedRoute>,
       },
       {
         path: "/products/new",

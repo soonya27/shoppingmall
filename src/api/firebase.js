@@ -90,12 +90,35 @@ export async function removeFromCart(user, productId) {
 }
 
 
-export async function getProduct() {
+export async function addBookmarkByUser({ user, product }) {
+    set(ref(database, 'bookmarks/' + user + '/' + product.id), {
+        ...product,
+    });
+}
+
+
+export async function getBookmarks(uid) {
+    return get(child(ref(database), `bookmarks/${uid}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            const data = Object.values(snapshot.val())
+            return data.map(data => data.id);
+        }
+        return [];
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+export async function getProduct(uid) {
+    const bookmarkList = uid ? await getBookmarks(uid) : [];
     return get(child(ref(database), `products`)).then((snapshot) => {
         if (snapshot.exists()) {
             const data = Object.values(snapshot.val())
-            // console.log(data);
-            return data;
+            const isBookmarkList = data.map(product => ({
+                ...product,
+                isBookmark: bookmarkList.includes(product.id)
+            }))
+            return isBookmarkList;
         }
         return [];
     }).catch((error) => {
