@@ -13,12 +13,9 @@ export default function CartListByUser({ uid }) {
     } = useQuery({
         queryKey: ['carts'],
         queryFn: async () => getCartProduct(uid),
-    })
-    if (products) {
-        products.map(item => {
-            console.log(item.itemNum)
-        })
-    }
+    });
+
+
 
     return (
         <ul className={styles.cart_list}>

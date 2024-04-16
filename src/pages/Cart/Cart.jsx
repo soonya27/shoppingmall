@@ -5,6 +5,7 @@ import CartListNotUser from '../../components/CartListNotUser/CartListNotUser';
 import { useAuthContent } from '../../context/AuthContext';
 import Button from '../../components/ui/Button/Button';
 
+const SHIPPING_PRICE = 3000;
 export default function Cart() {
     //불러오기  (user -> firebase  , !user -> localstorage)
 
@@ -28,25 +29,24 @@ export default function Cart() {
                 )
             }
             <div className={styles.footer}>
-                <div className={styles.priceWrap}>
-                    <div><p>상품총액</p>
+                <ul className={styles.priceWrap}>
+                    <li><p>상품총액</p>
                         <span></span>
-                    </div>
-                    <div>
+                    </li>
+                    <li>
                         <p>배송비</p>
-                        <span></span>
-                    </div>
-                    <div>
+                        <span>{SHIPPING_PRICE}</span>
+                    </li>
+                    <li>
                         <p>총가격</p>
                         <span></span>
-                    </div>
-                </div>
-                <Button>
+                    </li>
+                </ul>
+                <Button onClick={() => { }}>
                     주문하기
                 </Button>
-
             </div>
-        </div>
+        </div >
     );
 }
 
