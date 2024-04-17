@@ -10,6 +10,7 @@ import UserIcon from './../ui/icons/UserIcon';
 import { getCartProduct } from '../../api/firebase';
 import { useQuery } from '@tanstack/react-query';
 import { useAuthContent } from '../../context/AuthContext';
+import HeartIcon from './../ui/icons/HeartIcon';
 
 export default function Header() {
     //로그인여부 체크 -> 아이디표시, 로그인 버튼 변화 , 장바구니 불러오기 (갯수 표시)
@@ -58,6 +59,7 @@ export default function Header() {
 
                 <ul className={styles.navbar}>
                     {/* {user && ( */}
+                    {user && <li><Link to='/bookmark' className={`${styles.menu_icon} ${styles.heart}`}><HeartIcon color='#000' bold /></Link></li>}
                     <li><Link to="/cart" className={styles.menu_icon}>
                         <ShoppingbagIcon />
                         {products && (<p className={styles.carts_length}>{products.length}</p>)}

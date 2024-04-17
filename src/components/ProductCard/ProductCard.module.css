@@ -75,6 +75,7 @@
     margin-top: 12px;
 }
 
+
 .icon {
     position: absolute;
     top: 5%;
@@ -84,6 +85,12 @@
 
 .mobile {
     position: relative;
+}
+
+.pc .icon {
+    width: 1.5rem;
+    top: 3%;
+    right: 5%;
 }
 
 .mobile .icon {

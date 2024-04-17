@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 import { useMediaQueryContext } from '../../context/MediaQueryContext';
-import { addBookmarkByUser } from '../../api/firebase';
+import { addBookmarkByUser, removeFromBookmark } from '../../api/firebase';
 import { useAuthContent } from '../../context/AuthContext';
 import HeartIcon from '../ui/icons/HeartIcon';
 import HeartFilledIcon from '../ui/icons/HeartIFilledcon';
@@ -17,7 +17,7 @@ export default function ProductCard({ product }) {
 
     const handleClick = (e) => {
         //param으로 객체 전달
-        if (Array.from(e.target.classList).includes('bookmark') || e.target.nodeName === 'svg') return;
+        if (e.target.closest('p') && Array.from(e.target.closest('p').classList).includes('bookmark')) return;
         navigate(`/products/${id}`, { state: { product } });
     }
     const handleBookmark = () => {
@@ -25,7 +25,8 @@ export default function ProductCard({ product }) {
             console.log('로그인해주세요')
             return;
         }
-        addBookmarkByUser({ user: uid, product });
+        isBookmark ? removeFromBookmark(uid, product.id)
+            : addBookmarkByUser({ user: uid, product });
     }
 
     return (

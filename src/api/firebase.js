@@ -96,6 +96,10 @@ export async function addBookmarkByUser({ user, product }) {
     });
 }
 
+export async function removeFromBookmark(user, productId) {
+    return remove(ref(database, 'bookmarks/' + user + '/' + productId));
+}
+
 
 export async function getBookmarks(uid) {
     return get(child(ref(database), `bookmarks/${uid}`)).then((snapshot) => {

@@ -30,18 +30,20 @@
 .navbar {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 0.3rem;
 }
-
-.navbar li:not(:last-child) {
-    margin: 0 5px 0 0;
-}
-
 
 .menu_icon {
     position: relative;
-    display: block;
+    display: flex;
     font-size: 1.4rem;
+}
+
+.menu_icon.heart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.29rem;
 }
 
 .menu_icon svg {
@@ -64,14 +66,17 @@
 }
 
 .button {
+    display: flex;
+    height: 100%;
     padding: 0;
-    height: 24px;
     background: transparent;
     border: none;
     color: #000;
     font-weight: 600;
     cursor: pointer;
+    font-size: 1.4rem;
 }
+
 
 @media screen and (max-width: 1024px) {
     .menu_icon {
