@@ -23,6 +23,7 @@ export default function ProductsList({ type = 'all' }) {
     } = useQuery({
         queryKey: ['products', uid || ''],
         queryFn: async () => getProduct(uid),
+        staleTime: 1000 * 60
     })
     const random = products && randomNum(products.length, 6);
     const filteredProducts = products && (type === 'new' ? products.filter((item, idx) => idx < 6)

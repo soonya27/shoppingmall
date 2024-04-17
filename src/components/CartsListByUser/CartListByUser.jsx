@@ -16,7 +16,6 @@ export default function CartListByUser({ uid }) {
     });
 
 
-
     return (
         <ul className={styles.cart_list}>
             {

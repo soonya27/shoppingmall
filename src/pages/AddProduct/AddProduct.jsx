@@ -5,22 +5,19 @@ import styles from './AddProduct.module.css'
 import UploadIcon from './../../components/ui/icons/UploadIcon';
 import { uploadImage } from '../../api/uploader';
 import Button from '../../components/ui/Button/Button';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-
+const DEFAUT_FORM = {
+    title: '',
+    price: '',
+    category: '',
+    description: '',
+    options: '',
+}
 const inputArr = ['default', 'hover'];
 export default function AddProduct() {
-    const [form, setForm] = useState({
-        title: '',
-        price: '',
-        category: '',
-        description: '',
-        options: '',
-    });
-    //cloudnairy -> upload된 이미지 사용
+    const [form, setForm] = useState(DEFAUT_FORM);
     const [file, setFile] = useState({ default: '', hover: '' });
-    // const handleClick = () => {
-    //     addNewProduct();
-    // }
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
         if (type === 'file') {
@@ -30,19 +27,39 @@ export default function AddProduct() {
         }
         setForm(prev => ({ ...prev, [name]: value }))
     }
+
+    //react query mutation(업로드후 바로 캐시 업데이트)
+    const queryClient = useQueryClient();
+    const addProduct = useMutation(
+        {
+            mutationFn: ({ form, url }) => addNewProduct(form, { defaultImageUrl: url.defaultImageUrl, hoverImageUrl: url.hoverImageUrl }),
+            mutationKey: ['products'],
+            onSuccess: () => queryClient.invalidateQueries(['products'])
+        }
+    )
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // if (!file) return;
         if (!Object.values(file).every(item => item)) return;
-
 
         //cloudnary에 업로드 후 url획득 
         uploadImage(file.default)
             .then(defaultImageUrl => {
                 uploadImage(file.hover)
                     .then(hoverImageUrl => {
-                        console.log(defaultImageUrl, hoverImageUrl)
-                        addNewProduct(form, { defaultImageUrl, hoverImageUrl });
+                        // console.log(defaultImageUrl)
+                        // addNewProduct(form, { defaultImageUrl, hoverImageUrl });
+                        addProduct.mutate({
+                            form, url: { defaultImageUrl, hoverImageUrl }
+                        },
+                            {
+                                onSuccess: () => {
+                                    console.log('성공적으로 추가');
+                                    setForm(DEFAUT_FORM)
+                                }
+                            })
                     })
             })
     }
