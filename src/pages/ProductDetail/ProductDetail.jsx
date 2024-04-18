@@ -7,6 +7,7 @@ import { addCartsByUser } from '../../api/firebase';
 import { useAuthContent } from '../../context/AuthContext';
 import ArrowBackIcon from '../../components/ui/icons/ArrowBackIcon';
 import { useQueryClient } from '@tanstack/react-query';
+import { useModalContext } from '../../context/ModalContext';
 
 
 export default function ProductDetail() {
@@ -15,15 +16,16 @@ export default function ProductDetail() {
     const handleChange = (e) => setOption((prev => ({ ...prev, [e.target.name]: e.target.value })));
     const { user } = useAuthContent();
     const navigate = useNavigate();
+    const { modalOpen, setModalObj } = useModalContext();
 
     //query mutation
     const queryClient = useQueryClient();
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         // console.log(option, id);
         //login 돼있으면 -> user 아이디..같이
         //아니라면 localstorage
         if (user) {
-            addCartsByUser({
+            await addCartsByUser({
                 id, size: option.size, itemNum: option.itemNum, user: user.uid,
                 product
             });
@@ -32,6 +34,13 @@ export default function ProductDetail() {
             //localStorage
             console.log('비로그인 장바구니담기')
         }
+
+        //완료 후
+        setModalObj({
+            title: '장바구니 담기 완료.',
+            text: '장바구니 목록에서 확인 가능합니다.'
+        })
+        modalOpen();
     }
     const handleClick = (e) => {
         navigate(-1);

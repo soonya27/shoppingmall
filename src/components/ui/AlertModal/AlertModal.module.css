@@ -1,0 +1,37 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #00000066;
+    z-index: 100;
+
+}
+
+.container_inner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 400px;
+    max-height: 600px;
+    padding: 1.3rem 1rem;
+    background: #fff;
+    border-radius: .3rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.container_inner h5 {
+    font-size: .8rem;
+    font-weight: bold;
+}
+
+.container_inner p {
+    margin: .4rem 0 1rem;
+    font-size: .6rem;
+    line-height: 1.2;
+
+}

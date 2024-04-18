@@ -5,6 +5,8 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import Title from '../../components/ui/Title/Title';
 import styles from './ProductsList.module.css';
 import { useAuthContent } from '../../context/AuthContext';
+import ModalPortal from '../ui/ModalPortal';
+import AlertModal from '../ui/AlertModal/AlertModal';
 
 
 
@@ -23,7 +25,6 @@ export default function ProductsList({ type = 'all' }) {
     } = useQuery({
         queryKey: ['products', uid || ''],
         queryFn: async () => getProduct(uid),
-        staleTime: 1000 * 60
     })
     const random = products && randomNum(products.length, 6);
     const filteredProducts = products && (type === 'new' ? products.filter((item, idx) => idx < 6)

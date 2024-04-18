@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Footer from './components/Footer/Footer';
 import { AuthContextProvider } from './context/AuthContext';
 import { MediaQueryContextProvider } from './context/MediaQueryContext';
+import { ModalContextProvider } from './context/ModalContext';
 
 
 const queryClient = new QueryClient();
@@ -14,10 +15,12 @@ function App() {
     <AuthContextProvider>
       <MediaQueryContextProvider>
         <QueryClientProvider client={queryClient}>
-          <Header />
-          <Outlet />
-          <Footer />
-          <div id="portal" />
+          <ModalContextProvider>
+            <Header />
+            <Outlet />
+            <Footer />
+            <div id="portal" />
+          </ModalContextProvider>
         </QueryClientProvider>
       </MediaQueryContextProvider>
     </AuthContextProvider>

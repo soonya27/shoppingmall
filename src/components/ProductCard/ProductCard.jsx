@@ -7,14 +7,14 @@ import { useAuthContent } from '../../context/AuthContext';
 import HeartIcon from '../ui/icons/HeartIcon';
 import HeartFilledIcon from '../ui/icons/HeartIFilledcon';
 import { useQueryClient } from '@tanstack/react-query';
-
+import { useModalContext } from '../../context/ModalContext';
 
 export default function ProductCard({ product }) {
     const { isPc } = useMediaQueryContext();
     const { category, defaultImageUrl, hoverImageUrl, title, price, id, isBookmark } = product;
     const navigate = useNavigate();
     const { uid } = useAuthContent();
-
+    const { modalOpen, setModalObj } = useModalContext();
 
     //query mutation(업로드후 바로 캐시 업데이트)
     const queryClient = useQueryClient();
@@ -26,7 +26,11 @@ export default function ProductCard({ product }) {
     }
     const handleBookmark = () => {
         if (!uid) {
-            console.log('로그인해주세요')
+            setModalObj({
+                title: '로그인 해주세요.',
+                text: '로그인 후 관심상품 담기가 가능합니다.'
+            })
+            modalOpen();
             return;
         }
         isBookmark ? removeFromBookmark(uid, product.id)
@@ -78,7 +82,6 @@ export default function ProductCard({ product }) {
                 )
             }
         </li >
-
 
     );
 }
