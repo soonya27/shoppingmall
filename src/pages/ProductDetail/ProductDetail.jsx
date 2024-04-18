@@ -3,11 +3,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './ProductDetail.module.css';
 import AddCartIcon from '../../components/ui/icons/AddCartIcon';
 import Button from '../../components/ui/Button/Button';
-import { addCartsByUser } from '../../api/firebase';
+import { addCartsByUser, addOrUpdateToCart } from '../../api/firebase';
 import { useAuthContent } from '../../context/AuthContext';
 import ArrowBackIcon from '../../components/ui/icons/ArrowBackIcon';
 import { useQueryClient } from '@tanstack/react-query';
 import { useModalContext } from '../../context/ModalContext';
+import { addOrUpdateToCartNotUser } from '../../api/localStorage';
 
 
 export default function ProductDetail() {
@@ -21,26 +22,19 @@ export default function ProductDetail() {
     //query mutation
     const queryClient = useQueryClient();
     const handleSubmit = async () => {
-        // console.log(option, id);
-        //login 돼있으면 -> user 아이디..같이
-        //아니라면 localstorage
         if (user) {
+            //user
             await addCartsByUser({
                 id, size: option.size, itemNum: option.itemNum, user: user.uid,
                 product
             });
             queryClient.invalidateQueries(['carts']);
         } else {
-            //localStorage
-            const list = JSON.parse(localStorage.getItem('cartsList')) || [];
-            const addedList = !list.find(item => item.id === id) ?
-                [...list, {
-                    id, size: option.size, itemNum: option.itemNum,
-                    product
-                }]
-                : list;
-
-            localStorage.setItem('cartsList', JSON.stringify(addedList));
+            //not login
+            addOrUpdateToCartNotUser({
+                id, size: option.size, itemNum: option.itemNum,
+                product
+            });
         }
 
         //완료 후

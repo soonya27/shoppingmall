@@ -4,6 +4,7 @@ import { getCartProduct } from '../../api/firebase';
 import styles from './CartListByUser.module.css';
 import CartItem from '../CartItem/CartItem';
 import CartPriceCard from '../CartPriceCard/CartPriceCard';
+import CartNotItem from '../CartNotItem/CartNotItem';
 
 
 export default function CartListByUser({ uid }) {
@@ -21,8 +22,10 @@ export default function CartListByUser({ uid }) {
         <>
             <ul className={styles.cart_list}>
                 {
-                    products && products.map((product) => (
+                    products && ((products.length != 0) ? products.map((product) => (
                         <CartItem product={product} key={product.id} uid={uid} />
+                    )) : (
+                        <CartNotItem />
                     ))
                 }
             </ul>

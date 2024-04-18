@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import ShoppingbagIcon from '../ui/icons/ShoppingbagIcon';
@@ -25,7 +25,8 @@ export default function Header() {
         queryKey: ['carts', uid || ''],
         queryFn: () => getCartProduct(uid),
         enabled: !!uid
-    })
+    });
+
 
     const cartList = user ? products : (JSON.parse(localStorage.getItem('cartsList')) || []);
     return (

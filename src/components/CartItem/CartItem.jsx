@@ -5,7 +5,8 @@ import PlusIcon from '../ui/icons/PlusIcon';
 import CloseIcon from '../ui/icons/CloseIcon';
 import { useNavigate } from 'react-router-dom';
 import { addOrUpdateToCart, removeFromCart } from '../../api/firebase';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
+import { addOrUpdateToCartNotUser, removeCartNotUser } from '../../api/localStorage';
 
 
 
@@ -17,10 +18,18 @@ export default function CartItem({
     const [option, setOption] = useState({ size, itemNum, totalPrice: defaultPrice * parseInt(itemNum) });
     const handleChange = (e) => {
         setOption((prev => ({ ...prev, [e.target.name]: e.target.value })));
-        addOrUpdateToCart({
-            id, size: e.target.value, itemNum: option.itemNum, user: uid,
-            product
-        });
+        //user
+        if (uid) {
+            addOrUpdateToCart({
+                id, size: e.target.value, itemNum: option.itemNum, user: uid,
+                product
+            });
+        } else {
+            addOrUpdateToCartNotUser({
+                id, size: e.target.value, itemNum: option.itemNum,
+                product
+            });
+        }
     };
     const navigate = useNavigate();
     const handleClickLink = () => {
@@ -35,10 +44,20 @@ export default function CartItem({
         setOption(prev => {
             if (prev.itemNum == 1) return prev;
             const itemNum = parseInt(prev.itemNum) - 1;
-            addOrUpdateToCart({
-                id, size: option.size, itemNum, user: uid,
-                product
-            });
+            //user
+            if (uid) {
+                addOrUpdateToCart({
+                    id, size: option.size, itemNum, user: uid,
+                    product
+                });
+            } else {
+                //not login
+                addOrUpdateToCartNotUser({
+                    id, size: option.size, itemNum,
+                    product
+                });
+            }
+
             return {
                 ...prev, itemNum,
                 totalPrice: (defaultPrice * itemNum)
@@ -50,10 +69,20 @@ export default function CartItem({
     const handlePlus = () => {
         setOption(prev => {
             const itemNum = parseInt(prev.itemNum) + 1;
-            addOrUpdateToCart({
-                id, size: option.size, itemNum, user: uid,
-                product
-            });
+            //user
+            if (uid) {
+                addOrUpdateToCart({
+                    id, size: option.size, itemNum, user: uid,
+                    product
+                });
+            } else {
+                //not login
+                addOrUpdateToCartNotUser({
+                    id, size: option.size, itemNum,
+                    product
+                });
+            }
+
             return {
                 ...prev, itemNum,
                 totalPrice: (defaultPrice * itemNum)
@@ -64,8 +93,17 @@ export default function CartItem({
     }
 
     const handleDelete = () => {
-        removeFromCart(uid, id);
-        queryClient.invalidateQueries(['carts']);
+        if (uid) {
+            //user
+            removeFromCart(uid, id);
+            queryClient.invalidateQueries(['carts']);
+        } else {
+            //not login
+            removeCartNotUser(id);
+            window.location.reload();
+        }
+
+
     }
 
     return (

@@ -12,13 +12,6 @@ export default function Cart() {
     return (
         <div className='inner'>
             <h2>내 장바구니</h2>
-            <ul className={styles.listWrap}>
-                {/* {
-                    products && products.map(list => (
-                        <li key={list.id}>{list.id}</li>
-                    ))
-                } */}
-            </ul>
             {
                 user ? (
                     <CartListByUser uid={uid} />

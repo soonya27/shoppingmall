@@ -5,8 +5,6 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import Title from '../../components/ui/Title/Title';
 import styles from './ProductsList.module.css';
 import { useAuthContent } from '../../context/AuthContext';
-import ModalPortal from '../ui/ModalPortal';
-import AlertModal from '../ui/AlertModal/AlertModal';
 
 
 
@@ -52,11 +50,13 @@ export default function ProductsList({ type = 'all' }) {
 
 function randomNum(max, count) {
     const array = [];
-    while (array.length < count) {
-        const randomNumber = Math.floor(Math.random() * (max - 1 + 1)) + 0;
-        if (!array.includes(randomNumber)) {
-            array.push(randomNumber);
-        }
-    }
-    return array;
+    // while (array.length < count) {
+    //     const randomNumber = Math.floor(Math.random() * (max - 1 + 1)) + 0;
+    //     if (!array.includes(randomNumber)) {
+    //         array.push(randomNumber);
+    //     }
+    // }
+    // return array;
+
+    return [1, 3, 5, 7, 9, 11]
 }

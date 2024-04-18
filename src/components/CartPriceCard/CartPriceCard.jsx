@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthContent } from '../../context/AuthContext';
 import { removeCartAll } from '../../api/firebase';
 import { useQueryClient } from '@tanstack/react-query';
+import { removeCartAllNotUser } from '../../api/localStorage';
 
 const SHIPPING_PRICE = 3000;
 export default function CartPriceCard({ totalPrice }) {
     const { modalOpen, setModalObj } = useModalContext();
     const navigate = useNavigate();
     const { uid } = useAuthContent();
-
 
     //query mutation
     const queryClient = useQueryClient();
@@ -34,13 +34,22 @@ export default function CartPriceCard({ totalPrice }) {
                 </li>
             </ul>
             <Button onClick={() => {
+                if (totalPrice === 0) {
+                    modalOpen();
+                    setModalObj({
+                        title: '장바구니가 비어 있습니다.',
+                        text: '제품 추가후 주문을 다시 해주세요.'
+                    });
+                    return;
+                }
                 navigate('/');
-                //cart 삭제..
                 if (uid) {
+                    //user
                     removeCartAll(uid);
                     queryClient.invalidateQueries(['carts']);
                 } else {
-                    localStorage.removeItem('cartsList');
+                    //not login
+                    removeCartAllNotUser();
                 }
                 modalOpen();
                 setModalObj({
