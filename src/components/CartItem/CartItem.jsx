@@ -11,7 +11,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 export default function CartItem({
     product: { id, product, product: { hoverImageUrl, options, title, price }, size, itemNum },
-    uid
+    uid,
 }) {
     const defaultPrice = parseInt(price.replaceAll(',', ''));
     const [option, setOption] = useState({ size, itemNum, totalPrice: defaultPrice * parseInt(itemNum) });

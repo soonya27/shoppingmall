@@ -89,6 +89,10 @@ export async function removeFromCart(user, productId) {
     return remove(ref(database, 'carts/' + user + '/' + productId));
 }
 
+export async function removeCartAll(user) {
+    return remove(ref(database, 'carts/' + user));
+}
+
 
 export async function addBookmarkByUser({ user, product }) {
     set(ref(database, 'bookmarks/' + user + '/' + product.id), {
@@ -99,6 +103,7 @@ export async function addBookmarkByUser({ user, product }) {
 export async function removeFromBookmark(user, productId) {
     return remove(ref(database, 'bookmarks/' + user + '/' + productId));
 }
+
 
 
 export async function getBookmarks(uid) {
