@@ -27,6 +27,7 @@ export default function Header() {
         enabled: !!uid
     })
 
+    const cartList = user ? products : (JSON.parse(localStorage.getItem('cartsList')) || []);
     return (
         <header className={styles.header}>
             <div className={styles.inner}>
@@ -62,7 +63,7 @@ export default function Header() {
                     {user && <li><Link to='/bookmark' className={`${styles.menu_icon} ${styles.heart}`}><HeartIcon color='#000' bold /></Link></li>}
                     <li><Link to="/cart" className={styles.menu_icon}>
                         <ShoppingbagIcon />
-                        {products && (<p className={styles.carts_length}>{products.length}</p>)}
+                        {cartList && (<p className={styles.carts_length}>{cartList.length}</p>)}
                     </Link></li>
                     {user && <li><User user={user} /></li>}
                     {!user && <li><button className={styles.button} type="button" onClick={login}>

@@ -32,7 +32,15 @@ export default function ProductDetail() {
             queryClient.invalidateQueries(['carts']);
         } else {
             //localStorage
-            console.log('비로그인 장바구니담기')
+            const list = JSON.parse(localStorage.getItem('cartsList')) || [];
+            const addedList = !list.find(item => item.id === id) ?
+                [...list, {
+                    id, size: option.size, itemNum: option.itemNum,
+                    product
+                }]
+                : list;
+
+            localStorage.setItem('cartsList', JSON.stringify(addedList));
         }
 
         //완료 후
