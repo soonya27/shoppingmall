@@ -6,6 +6,7 @@ import { addBookmarkByUser, removeFromBookmark } from '../../api/firebase';
 import { useAuthContent } from '../../context/AuthContext';
 import HeartIcon from '../ui/icons/HeartIcon';
 import HeartFilledIcon from '../ui/icons/HeartIFilledcon';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 export default function ProductCard({ product }) {
@@ -14,6 +15,9 @@ export default function ProductCard({ product }) {
     const navigate = useNavigate();
     const { uid } = useAuthContent();
 
+
+    //query mutation(업로드후 바로 캐시 업데이트)
+    const queryClient = useQueryClient();
 
     const handleClick = (e) => {
         //param으로 객체 전달
@@ -27,6 +31,8 @@ export default function ProductCard({ product }) {
         }
         isBookmark ? removeFromBookmark(uid, product.id)
             : addBookmarkByUser({ user: uid, product });
+        queryClient.invalidateQueries(['products']);
+
     }
 
     return (
