@@ -5,6 +5,7 @@ import PlusIcon from '../ui/icons/PlusIcon';
 import CloseIcon from '../ui/icons/CloseIcon';
 import { useNavigate } from 'react-router-dom';
 import { addOrUpdateToCart, removeFromCart } from '../../api/firebase';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
 
 
 
@@ -25,6 +26,11 @@ export default function CartItem({
     const handleClickLink = () => {
         navigate(`/products/${id}`, { state: { product } });
     }
+
+    //query mutation
+    const queryClient = useQueryClient();
+
+
     const handleMinus = () => {
         setOption(prev => {
             if (prev.itemNum == 1) return prev;
@@ -38,6 +44,7 @@ export default function CartItem({
                 totalPrice: (defaultPrice * itemNum)
             }
         });
+        queryClient.invalidateQueries(['carts']);
     }
 
     const handlePlus = () => {
@@ -53,10 +60,12 @@ export default function CartItem({
             }
         }
         );
+        queryClient.invalidateQueries(['carts']);
     }
 
     const handleDelete = () => {
         removeFromCart(uid, id);
+        queryClient.invalidateQueries(['carts']);
     }
 
     return (

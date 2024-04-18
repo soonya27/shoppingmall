@@ -6,6 +6,7 @@ import Button from '../../components/ui/Button/Button';
 import { addCartsByUser } from '../../api/firebase';
 import { useAuthContent } from '../../context/AuthContext';
 import ArrowBackIcon from '../../components/ui/icons/ArrowBackIcon';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 export default function ProductDetail() {
@@ -15,7 +16,8 @@ export default function ProductDetail() {
     const { user } = useAuthContent();
     const navigate = useNavigate();
 
-
+    //query mutation
+    const queryClient = useQueryClient();
     const handleSubmit = () => {
         // console.log(option, id);
         //login 돼있으면 -> user 아이디..같이
@@ -25,6 +27,7 @@ export default function ProductDetail() {
                 id, size: option.size, itemNum: option.itemNum, user: user.uid,
                 product
             });
+            queryClient.invalidateQueries(['carts']);
         } else {
             //localStorage
             console.log('비로그인 장바구니담기')
