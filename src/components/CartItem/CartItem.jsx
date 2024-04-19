@@ -29,6 +29,7 @@ export default function CartItem({
                 id, size: e.target.value, itemNum: option.itemNum,
                 product
             });
+            window.location.reload();
         }
     };
     const navigate = useNavigate();
@@ -56,6 +57,7 @@ export default function CartItem({
                     id, size: option.size, itemNum,
                     product
                 });
+                window.location.reload();
             }
 
             return {
@@ -64,6 +66,7 @@ export default function CartItem({
             }
         });
         queryClient.invalidateQueries(['carts']);
+
     }
 
     const handlePlus = () => {
@@ -81,6 +84,7 @@ export default function CartItem({
                     id, size: option.size, itemNum,
                     product
                 });
+                window.location.reload();
             }
 
             return {

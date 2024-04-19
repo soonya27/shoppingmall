@@ -11,12 +11,13 @@ export function ModalContextProvider({ children }) {
     const [modalObj, setModalObj] = useState({});
 
 
+
     return <ModalContext.Provider value={{ isModalOpen, modalClose, modalOpen, setModalObj }}>
         {children}
         {
             isModalOpen && (
                 <ModalPortal>
-                    <AlertModal onClose={modalClose} modalObj={modalObj}>
+                    <AlertModal onClose={modalClose} modalObj={modalObj} closeCallback={modalObj.btnCallback}>
                         <h5>{modalObj.title || ''}</h5>
                         <p>{modalObj.text || ''}</p>
                     </AlertModal>

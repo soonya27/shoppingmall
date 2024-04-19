@@ -3,12 +3,13 @@ import styles from './AlertModal.module.css';
 import Button from '../Button/Button';
 
 
-export default function AlertModal({ onClose, children }) {
+export default function AlertModal({ onClose, children, closeCallback }) {
     return (
-        <section onClick={(e) => {
+        <section onClick={async (e) => {
             //section(bg 영역 클릭시)
             if (e.target === e.currentTarget) {
-                onClose();
+                closeCallback ? await closeCallback().then(onClose)
+                    : onClose();
             }
         }}
             className={styles.container}
@@ -16,7 +17,10 @@ export default function AlertModal({ onClose, children }) {
             {/* PostModal container */}
             <div className={styles.container_inner}>
                 {children}
-                <Button onClick={onClose}>
+                <Button onClick={async () => {
+                    closeCallback ? await closeCallback().then(onClose)
+                        : onClose();
+                }}>
                     확인
                 </Button>
             </div>

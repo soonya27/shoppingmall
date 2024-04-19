@@ -40,7 +40,18 @@ export default function ProductDetail() {
         //완료 후
         setModalObj({
             title: '장바구니 담기 완료.',
-            text: '장바구니 목록에서 확인 가능합니다.'
+            text: '장바구니 목록에서 확인 가능합니다.',
+            btnCallback: () => {
+                // return new Promise(resolve => setTimeout(() => {
+                //     console.log('loading....');
+                //     window.location.reload();
+                //     resolve();
+                // }, 0))
+                return new Promise(resolve => {
+                    window.location.reload();
+                    resolve();
+                })
+            }
         })
         modalOpen();
     }

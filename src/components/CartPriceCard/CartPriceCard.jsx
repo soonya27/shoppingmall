@@ -54,7 +54,13 @@ export default function CartPriceCard({ totalPrice }) {
                 modalOpen();
                 setModalObj({
                     title: '주문이 완료되었습니다.',
-                    text: '장바구니가 초기화 됩니다.'
+                    text: '장바구니가 초기화 됩니다.',
+                    btnCallback: () => {
+                        return new Promise(resolve => {
+                            window.location.reload();
+                            resolve();
+                        })
+                    }
                 });
             }}>
                 주문하기
