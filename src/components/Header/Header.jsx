@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
-import { Link } from 'react-router-dom';
+import { Link, isRouteErrorResponse, useLocation } from 'react-router-dom';
 import ShoppingbagIcon from '../ui/icons/ShoppingbagIcon';
 import AllmenuIcon from './../ui/icons/AllMenuIcon';
 import User from '../User/User';
@@ -12,12 +12,18 @@ import { useQuery } from '@tanstack/react-query';
 import { useAuthContent } from '../../context/AuthContext';
 import HeartIcon from './../ui/icons/HeartIcon';
 
+const allMenuList = [
+    { text: 'Products', url: '/products', isAdmin: false, },
+    { text: 'New', url: '/products/new', isAdmin: true, },
+]
+
 export default function Header() {
     //로그인여부 체크 -> 아이디표시, 로그인 버튼 변화 , 장바구니 불러오기 (갯수 표시)
     //로그인 ok ->1.일반, 2. 어드민:메뉴 하나 추가(newProduct)
 
     const [allMenu, setAllMenu] = useState(false);
     const { user, uid, login } = useAuthContent();
+    const { pathname } = useLocation();
 
     const {
         data: products
@@ -39,15 +45,23 @@ export default function Header() {
                     allMenu && (
                         <ModalPortal >
                             <AllMenu onClose={() => setAllMenu(false)}>
-                                <ul>
-                                    <li> <Link to="/products">
+                                <ul className={styles.allmenu_list}>
+                                    {/* <li><Link to="/products" className={`${pathname === '/products' ? styles.active : ''}`}>
                                         Products
                                     </Link></li>
                                     {user?.isAdmin && (
                                         <li>
                                             <Link to="/products/new">New</Link>
                                         </li>
-                                    )}
+                                    )} */}
+                                    {
+                                        allMenuList.map(({ text, url, isAdmin }) => {
+                                            if (isAdmin && !user?.isAdmin) return;
+                                            return (<li key={text}>
+                                                <Link to={url} className={`${pathname === url ? styles.active : ''}`}>{text}</Link>
+                                            </li>)
+                                        })
+                                    }
                                 </ul>
                             </AllMenu>
                         </ModalPortal>

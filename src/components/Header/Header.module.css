@@ -77,9 +77,26 @@
     font-size: 1.4rem;
 }
 
+.allmenu_list li {
+    margin: 0 0 0.3rem;
+}
+
+.allmenu_list a {
+    font-weight: bold;
+}
+
+.allmenu_list a.active,
+.allmenu_list a:hover {
+    border-bottom: 1px solid #000;
+    color: #000;
+}
 
 @media screen and (max-width: 1024px) {
     .menu_icon {
         font-size: 1.4rem;
+    }
+
+    .allmenu_list a {
+        font-size: 0.8rem;
     }
 }

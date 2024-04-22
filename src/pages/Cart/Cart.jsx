@@ -3,6 +3,7 @@ import styles from './Cart.module.css';
 import CartListByUser from '../../components/CartsListByUser/CartListByUser';
 import CartListNotUser from '../../components/CartListNotUser/CartListNotUser';
 import { useAuthContent } from '../../context/AuthContext';
+import Title from '../../components/ui/Title/Title';
 
 
 export default function Cart() {
@@ -11,7 +12,7 @@ export default function Cart() {
     const { user, uid } = useAuthContent();
     return (
         <div className='inner'>
-            <h2>내 장바구니</h2>
+            <Title highlight='MY CART' text='' />
             {
                 user ? (
                     <CartListByUser uid={uid} />

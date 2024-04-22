@@ -22,6 +22,7 @@ export default function Footer() {
                 <p><span>SERVICE CENTER</span>1600-6352<span>BUSINESS LICENSE</span>191-81-00440</p>
                 <p>HR TEAM (Kdh.oioikoreaofficial@gmail.com) 채용문의 +82 070-4451-2248</p>
                 <p>Copyright © O!Oi. All Rights Reserved.</p>
+                <p className={styles.descript}>이 홈페이지는 포트폴리오용 사이트로 실제 서비스가 이루어지지 않습니다.</p>
             </div>
         </footer >
     );
