@@ -3,10 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './ProductDetail.module.css';
 import AddCartIcon from '../../components/ui/icons/AddCartIcon';
 import Button from '../../components/ui/Button/Button';
-import { addCartsByUser, addOrUpdateToCart } from '../../api/firebase';
 import { useAuthContent } from '../../context/AuthContext';
 import ArrowBackIcon from '../../components/ui/icons/ArrowBackIcon';
-import { useQueryClient } from '@tanstack/react-query';
 import { useModalContext } from '../../context/ModalContext';
 import { addOrUpdateToCartNotUser } from '../../api/localStorage';
 import useCarts from '../../hooks/useCarts';
@@ -97,7 +95,7 @@ export default function ProductDetail() {
                             }
                         </div>
                         <div className={styles.item_size}>
-                            <input type="number" name="itemNum" id="" value={option.itemNum} onChange={handleChange} />
+                            <input type="number" name="itemNum" id="" value={option.itemNum} onChange={handleChange} min={1} onKeyDown={(e) => e.preventDefault()} />
                             <p>개</p>
                         </div>
                     </div>

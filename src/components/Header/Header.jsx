@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.css';
-import { Link, isRouteErrorResponse, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ShoppingbagIcon from '../ui/icons/ShoppingbagIcon';
 import AllmenuIcon from './../ui/icons/AllMenuIcon';
 import User from '../User/User';

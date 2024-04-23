@@ -4,8 +4,6 @@ import MinusIcon from '../ui/icons/MinusIcon';
 import PlusIcon from '../ui/icons/PlusIcon';
 import CloseIcon from '../ui/icons/CloseIcon';
 import { useNavigate } from 'react-router-dom';
-import { addOrUpdateToCart, removeFromCart } from '../../api/firebase';
-import { useQueryClient } from '@tanstack/react-query';
 import { addOrUpdateToCartNotUser, removeCartNotUser } from '../../api/localStorage';
 import useCarts from '../../hooks/useCarts';
 
@@ -17,11 +15,13 @@ export default function CartItem({
 }) {
     const defaultPrice = parseInt(price.replaceAll(',', ''));
     const [option, setOption] = useState({ size, itemNum, totalPrice: defaultPrice * parseInt(itemNum) });
+    const { addOrUpdateToItem, removeItem } = useCarts(uid);
+
     const handleChange = (e) => {
         setOption((prev => ({ ...prev, [e.target.name]: e.target.value })));
         //user
         if (uid) {
-            addOrUpdateToCart({
+            addOrUpdateToItem.mutate({
                 id, size: e.target.value, itemNum: option.itemNum, user: uid,
                 product
             });
@@ -37,8 +37,6 @@ export default function CartItem({
     const handleClickLink = () => {
         navigate(`/products/${id}`, { state: { product } });
     }
-
-    const { addOrUpdateToItem, removeItem } = useCarts(uid);
 
     const handleMinus = () => {
         setOption(prev => {

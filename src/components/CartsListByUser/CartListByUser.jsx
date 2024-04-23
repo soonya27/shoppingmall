@@ -1,6 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import { getCartProduct } from '../../api/firebase';
+import React from 'react';
 import styles from './CartListByUser.module.css';
 import CartItem from '../CartItem/CartItem';
 import CartPriceCard from '../CartPriceCard/CartPriceCard';

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './CartPriceCard.module.css';
 import Button from '../ui/Button/Button';
 import { useModalContext } from '../../context/ModalContext';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContent } from '../../context/AuthContext';
-import { removeCartAll } from '../../api/firebase';
-import { useQueryClient } from '@tanstack/react-query';
 import { removeCartAllNotUser } from '../../api/localStorage';
 import useCarts from '../../hooks/useCarts';
 
