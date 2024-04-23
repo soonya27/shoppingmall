@@ -6,6 +6,7 @@ import Title from '../../components/ui/Title/Title';
 import styles from './ProductsList.module.css';
 import { useAuthContent } from '../../context/AuthContext';
 import LoadingSpinner from '../ui/LoadingSpinner/LoadingSpinner';
+import useProducts from '../../hooks/useProducts';
 
 
 
@@ -17,14 +18,22 @@ export default function ProductsList({ type = 'all' }) {
         best: { highlight: 'BEST', text: 'SELLER' },
         bookmark: { highlight: 'BOOKMARK', text: 'PRODUCTS' }
     }
-    const {
+    // const {
+    //     isLoading,
+    //     error,
+    //     data: products
+    // } = useQuery({
+    //     queryKey: ['products', uid || ''],
+    //     queryFn: async () => getProduct(uid),
+    // });
+
+    const { productQuery: {
         isLoading,
         error,
         data: products
-    } = useQuery({
-        queryKey: ['products', uid || ''],
-        queryFn: async () => getProduct(uid),
-    })
+    } } = useProducts(uid);
+
+
     const random = products && randomNum(products.length, 6);
     const filteredProducts = products && (type === 'new' ? products.filter((item, idx) => idx < 6)
         : type === 'best' ? products.filter((item, idx) => random.includes(idx))

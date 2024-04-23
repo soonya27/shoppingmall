@@ -2,12 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 import { useMediaQueryContext } from '../../context/MediaQueryContext';
-import { addBookmarkByUser, removeFromBookmark } from '../../api/firebase';
 import { useAuthContent } from '../../context/AuthContext';
 import HeartIcon from '../ui/icons/HeartIcon';
 import HeartFilledIcon from '../ui/icons/HeartIFilledcon';
 import { useQueryClient } from '@tanstack/react-query';
 import { useModalContext } from '../../context/ModalContext';
+import useProducts from '../../hooks/useProducts';
 
 export default function ProductCard({ product }) {
     const { isPc } = useMediaQueryContext();
@@ -17,14 +17,15 @@ export default function ProductCard({ product }) {
     const { modalOpen, setModalObj } = useModalContext();
 
     //query mutation(업로드후 바로 캐시 업데이트)
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
+    const { addBookmark } = useProducts(uid);
 
     const handleClick = (e) => {
         //param으로 객체 전달
         if (e.target.closest('p') && Array.from(e.target.closest('p').classList).includes('bookmark')) return;
         navigate(`/products/${id}`, { state: { product } });
     }
-    const handleBookmark = () => {
+    const handleBookmark = async () => {
         if (!uid) {
             setModalObj({
                 title: '로그인 해주세요.',
@@ -33,9 +34,13 @@ export default function ProductCard({ product }) {
             modalOpen();
             return;
         }
-        isBookmark ? removeFromBookmark(uid, product.id)
-            : addBookmarkByUser({ user: uid, product });
-        queryClient.invalidateQueries(['products']);
+        // isBookmark ? await removeFromBookmark(uid, product.id)
+        //     : await addBookmarkByUser({ user: uid, product });
+        // queryClient.invalidateQueries(['products']);
+
+        addBookmark.mutate({
+            isBookmark, product
+        });
 
     }
 

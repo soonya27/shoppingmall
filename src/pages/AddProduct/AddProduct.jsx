@@ -6,6 +6,7 @@ import UploadIcon from './../../components/ui/icons/UploadIcon';
 import { uploadImage } from '../../api/uploader';
 import Button from '../../components/ui/Button/Button';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useProducts from '../../hooks/useProducts';
 
 const DEFAUT_FORM = {
     title: '',
@@ -29,14 +30,16 @@ export default function AddProduct() {
     }
 
     //react query mutation(업로드후 바로 캐시 업데이트)
-    const queryClient = useQueryClient();
-    const addProduct = useMutation(
-        {
-            mutationFn: ({ form, url }) => addNewProduct(form, { defaultImageUrl: url.defaultImageUrl, hoverImageUrl: url.hoverImageUrl }),
-            mutationKey: ['products'],
-            onSuccess: () => queryClient.invalidateQueries(['products'])
-        }
-    )
+    // const queryClient = useQueryClient();
+    // const addProduct = useMutation(
+    //     {
+    //         mutationFn: ({ form, url }) => addNewProduct(form, { defaultImageUrl: url.defaultImageUrl, hoverImageUrl: url.hoverImageUrl }),
+    //         mutationKey: ['products'],
+    //         onSuccess: () => queryClient.invalidateQueries(['products'])
+    //     }
+    // );
+
+    const { addProduct } = useProducts();
 
 
     const handleSubmit = (e) => {
@@ -57,7 +60,7 @@ export default function AddProduct() {
                             {
                                 onSuccess: () => {
                                     console.log('성공적으로 추가');
-                                    setForm(DEFAUT_FORM)
+                                    setForm(DEFAUT_FORM);
                                 }
                             })
                     })
