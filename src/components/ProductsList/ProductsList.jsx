@@ -5,6 +5,7 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import Title from '../../components/ui/Title/Title';
 import styles from './ProductsList.module.css';
 import { useAuthContent } from '../../context/AuthContext';
+import LoadingSpinner from '../ui/LoadingSpinner/LoadingSpinner';
 
 
 
@@ -33,7 +34,7 @@ export default function ProductsList({ type = 'all' }) {
         <article className={styles.article}>
             <Title highlight={typeText[type].highlight} text={typeText[type].text} />
             <div className='inner'>
-                {isLoading && <p>loading...</p>}
+                {isLoading && <LoadingSpinner />}
                 {products &&
                     <ul className={styles.productList}>
                         {filteredProducts.map(product => (
@@ -50,6 +51,7 @@ export default function ProductsList({ type = 'all' }) {
 
 function randomNum(max, count) {
     const array = [];
+    // 좋아요 표시 누른뒤 reload.. 특정값 가져오기로 변경
     // while (array.length < count) {
     //     const randomNumber = Math.floor(Math.random() * (max - 1 + 1)) + 0;
     //     if (!array.includes(randomNumber)) {
@@ -58,5 +60,5 @@ function randomNum(max, count) {
     // }
     // return array;
 
-    return [1, 3, 5, 7, 9, 11]
+    return [1, 3, 5, 7, 9, 11];
 }
