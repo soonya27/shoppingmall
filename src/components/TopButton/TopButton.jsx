@@ -28,16 +28,11 @@ export default function TopButton() {
     }, []);
 
     return (
-        <>
-            {showButton && (
-                <div className={`${styles.btnTop} ${showButton ? styles.active : ''}`} onClick={handleClick}>
-                    <p>
-                        <ArrowTopIcon />
-                    </p>
-                </div>
-            )
-            }
-        </>
+        <div className={`${styles.btnTop} ${showButton ? styles.active : ''}`} onClick={handleClick}>
+            <p>
+                <ArrowTopIcon />
+            </p>
+        </div>
     );
 }
 

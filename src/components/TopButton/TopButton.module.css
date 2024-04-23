@@ -10,11 +10,14 @@
     background: #fff;
     box-sizing: border-box;
     z-index: 1000;
+    opacity: 0;
     visibility: hidden;
     cursor: pointer;
+    transition: opacity 0.3s ease 0s, visibility 0.3s ease 0s, bottom 0.3s ease 0s;
 }
 
 .btnTop.active {
+    opacity: 1;
     visibility: visible;
     animation: topButton 0.4s forwards;
 }
