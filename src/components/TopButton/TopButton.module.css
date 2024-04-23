@@ -1,0 +1,49 @@
+.btnTop {
+    position: fixed;
+    bottom: 3%;
+    right: 5%;
+    width: 1.6rem;
+    height: 1.6rem;
+    padding: .1rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 50%;
+    background: #fff;
+    box-sizing: border-box;
+    z-index: 1000;
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.btnTop.active {
+    visibility: visible;
+    animation: topButton 0.4s forwards;
+}
+
+.btnTop p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    color: #4f4f4f;
+}
+
+@keyframes topButton {
+    0% {
+        bottom: 0%;
+    }
+
+    100% {
+        bottom: 3%;
+    }
+}
+
+
+@media screen and (min-width:768px) {
+    .btnTop {
+        width: 2.6rem;
+        height: 2.6rem;
+        padding: .3rem;
+    }
+}

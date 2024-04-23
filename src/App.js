@@ -6,9 +6,10 @@ import Footer from './components/Footer/Footer';
 import { AuthContextProvider } from './context/AuthContext';
 import { MediaQueryContextProvider } from './context/MediaQueryContext';
 import { ModalContextProvider } from './context/ModalContext';
-
+import TopButton from './components/TopButton/TopButton';
 
 const queryClient = new QueryClient();
+
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Header />
             <Outlet />
             <Footer />
+            <TopButton />
             <div id="portal" />
           </ModalContextProvider>
         </QueryClientProvider>
