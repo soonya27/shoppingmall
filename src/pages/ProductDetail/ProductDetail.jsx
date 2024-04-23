@@ -9,26 +9,28 @@ import ArrowBackIcon from '../../components/ui/icons/ArrowBackIcon';
 import { useQueryClient } from '@tanstack/react-query';
 import { useModalContext } from '../../context/ModalContext';
 import { addOrUpdateToCartNotUser } from '../../api/localStorage';
+import useCarts from '../../hooks/useCarts';
 
 
 export default function ProductDetail() {
     const { state: { product, product: { category, defaultImageUrl, hoverImageUrl, title, price, id, descripct, options } } } = useLocation();
     const [option, setOption] = useState({ size: options[0], itemNum: 1 });
     const handleChange = (e) => setOption((prev => ({ ...prev, [e.target.name]: e.target.value })));
-    const { user } = useAuthContent();
+    const { user, uid } = useAuthContent();
     const navigate = useNavigate();
     const { modalOpen, setModalObj } = useModalContext();
 
-    //query mutation
-    const queryClient = useQueryClient();
+    const { addOrUpdateToItem } = useCarts(uid);
+
+
     const handleSubmit = async () => {
         if (user) {
             //user
-            await addCartsByUser({
+            addOrUpdateToItem.mutate({
                 id, size: option.size, itemNum: option.itemNum, user: user.uid,
                 product
             });
-            queryClient.invalidateQueries(['carts']);
+
         } else {
             //not login
             addOrUpdateToCartNotUser({
@@ -48,7 +50,9 @@ export default function ProductDetail() {
                 //     resolve();
                 // }, 0))
                 return new Promise(resolve => {
-                    window.location.reload();
+                    if (!user) {
+                        window.location.reload();
+                    }
                     resolve();
                 })
             }

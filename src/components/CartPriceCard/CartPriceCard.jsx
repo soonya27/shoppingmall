@@ -7,6 +7,7 @@ import { useAuthContent } from '../../context/AuthContext';
 import { removeCartAll } from '../../api/firebase';
 import { useQueryClient } from '@tanstack/react-query';
 import { removeCartAllNotUser } from '../../api/localStorage';
+import useCarts from '../../hooks/useCarts';
 
 const SHIPPING_PRICE = 3000;
 export default function CartPriceCard({ totalPrice }) {
@@ -14,8 +15,7 @@ export default function CartPriceCard({ totalPrice }) {
     const navigate = useNavigate();
     const { uid } = useAuthContent();
 
-    //query mutation
-    const queryClient = useQueryClient();
+    const { removeAllItem } = useCarts(uid);
 
 
     return (
@@ -45,8 +45,8 @@ export default function CartPriceCard({ totalPrice }) {
                 navigate('/');
                 if (uid) {
                     //user
-                    removeCartAll(uid);
-                    queryClient.invalidateQueries(['carts']);
+                    removeAllItem.mutate();
+
                 } else {
                     //not login
                     removeCartAllNotUser();
@@ -57,7 +57,9 @@ export default function CartPriceCard({ totalPrice }) {
                     text: '장바구니가 초기화 됩니다.',
                     btnCallback: () => {
                         return new Promise(resolve => {
-                            window.location.reload();
+                            if (!uid) {
+                                window.location.reload();
+                            }
                             resolve();
                         })
                     }

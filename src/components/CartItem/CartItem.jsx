@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { addOrUpdateToCart, removeFromCart } from '../../api/firebase';
 import { useQueryClient } from '@tanstack/react-query';
 import { addOrUpdateToCartNotUser, removeCartNotUser } from '../../api/localStorage';
+import useCarts from '../../hooks/useCarts';
 
 
 
@@ -37,9 +38,7 @@ export default function CartItem({
         navigate(`/products/${id}`, { state: { product } });
     }
 
-    //query mutation
-    const queryClient = useQueryClient();
-
+    const { addOrUpdateToItem, removeItem } = useCarts(uid);
 
     const handleMinus = () => {
         setOption(prev => {
@@ -47,10 +46,11 @@ export default function CartItem({
             const itemNum = parseInt(prev.itemNum) - 1;
             //user
             if (uid) {
-                addOrUpdateToCart({
+                addOrUpdateToItem.mutate({
                     id, size: option.size, itemNum, user: uid,
                     product
                 });
+
             } else {
                 //not login
                 addOrUpdateToCartNotUser({
@@ -65,7 +65,6 @@ export default function CartItem({
                 totalPrice: (defaultPrice * itemNum)
             }
         });
-        queryClient.invalidateQueries(['carts']);
 
     }
 
@@ -74,10 +73,11 @@ export default function CartItem({
             const itemNum = parseInt(prev.itemNum) + 1;
             //user
             if (uid) {
-                addOrUpdateToCart({
+                addOrUpdateToItem.mutate({
                     id, size: option.size, itemNum, user: uid,
                     product
                 });
+
             } else {
                 //not login
                 addOrUpdateToCartNotUser({
@@ -93,14 +93,14 @@ export default function CartItem({
             }
         }
         );
-        queryClient.invalidateQueries(['carts']);
     }
 
     const handleDelete = () => {
         if (uid) {
             //user
-            removeFromCart(uid, id);
-            queryClient.invalidateQueries(['carts']);
+            removeItem.mutate({
+                uid, id
+            });
         } else {
             //not login
             removeCartNotUser(id);

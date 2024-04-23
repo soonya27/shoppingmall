@@ -13,8 +13,7 @@ export default function useProducts(uid) {
     const addProduct = useMutation(
         {
             mutationFn: ({ form, url }) => addNewProduct(form, { defaultImageUrl: url.defaultImageUrl, hoverImageUrl: url.hoverImageUrl }),
-            mutationKey: ['products'],
-            onSuccess: () => queryClient.invalidateQueries(['products'])
+            onSuccess: () => queryClient.invalidateQueries(['products', uid])
         }
     );
 
@@ -24,8 +23,7 @@ export default function useProducts(uid) {
                 return isBookmark ? removeFromBookmark(uid, product.id)
                     : addBookmarkByUser({ user: uid, product });
             },
-            mutationKey: ['products'],
-            onSuccess: () => queryClient.invalidateQueries(['products'])
+            onSuccess: () => queryClient.invalidateQueries(['products', uid])
         }
     );
 

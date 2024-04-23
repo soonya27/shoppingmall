@@ -7,10 +7,9 @@ import User from '../User/User';
 import ModalPortal from '../ui/icons/ModalPortal';
 import AllMenu from './../AllMenu/AllMenu';
 import UserIcon from './../ui/icons/UserIcon';
-import { getCartProduct } from '../../api/firebase';
-import { useQuery } from '@tanstack/react-query';
 import { useAuthContent } from '../../context/AuthContext';
 import HeartIcon from './../ui/icons/HeartIcon';
+import useCarts from '../../hooks/useCarts';
 
 const allMenuList = [
     { text: 'Products', url: '/products', isAdmin: false, },
@@ -25,14 +24,11 @@ export default function Header() {
     const { user, uid, login } = useAuthContent();
     const { pathname } = useLocation();
 
-    const {
+    const { cartQuery: {
+        isLoading,
+        error,
         data: products
-    } = useQuery({
-        queryKey: ['carts', uid || ''],
-        queryFn: () => getCartProduct(uid),
-        enabled: !!uid
-    });
-
+    } } = useCarts(uid);
 
     const cartList = user ? products : (JSON.parse(localStorage.getItem('cartsList')) || []);
     return (
