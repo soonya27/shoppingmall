@@ -5,7 +5,6 @@ import { useMediaQueryContext } from '../../context/MediaQueryContext';
 import { useAuthContent } from '../../context/AuthContext';
 import HeartIcon from '../ui/icons/HeartIcon';
 import HeartFilledIcon from '../ui/icons/HeartIFilledcon';
-import { useQueryClient } from '@tanstack/react-query';
 import { useModalContext } from '../../context/ModalContext';
 import useProducts from '../../hooks/useProducts';
 
@@ -16,8 +15,6 @@ export default function ProductCard({ product }) {
     const { uid } = useAuthContent();
     const { modalOpen, setModalObj } = useModalContext();
 
-    //query mutation(업로드후 바로 캐시 업데이트)
-    // const queryClient = useQueryClient();
     const { addBookmark } = useProducts(uid);
 
     const handleClick = (e) => {
@@ -34,9 +31,6 @@ export default function ProductCard({ product }) {
             modalOpen();
             return;
         }
-        // isBookmark ? await removeFromBookmark(uid, product.id)
-        //     : await addBookmarkByUser({ user: uid, product });
-        // queryClient.invalidateQueries(['products']);
 
         addBookmark.mutate({
             isBookmark, product

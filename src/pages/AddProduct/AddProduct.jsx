@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { addNewProduct, getProduct } from '../../api/firebase';
 import Title from './../../components/ui/Title/Title';
 import styles from './AddProduct.module.css'
 import UploadIcon from './../../components/ui/icons/UploadIcon';
 import { uploadImage } from '../../api/uploader';
 import Button from '../../components/ui/Button/Button';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useProducts from '../../hooks/useProducts';
 
 const DEFAUT_FORM = {
@@ -29,18 +27,7 @@ export default function AddProduct() {
         setForm(prev => ({ ...prev, [name]: value }))
     }
 
-    //react query mutation(업로드후 바로 캐시 업데이트)
-    // const queryClient = useQueryClient();
-    // const addProduct = useMutation(
-    //     {
-    //         mutationFn: ({ form, url }) => addNewProduct(form, { defaultImageUrl: url.defaultImageUrl, hoverImageUrl: url.hoverImageUrl }),
-    //         mutationKey: ['products'],
-    //         onSuccess: () => queryClient.invalidateQueries(['products'])
-    //     }
-    // );
-
     const { addProduct } = useProducts();
-
 
     const handleSubmit = (e) => {
         e.preventDefault();

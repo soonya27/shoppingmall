@@ -1,13 +1,10 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getProduct } from '../../api/firebase';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Title from '../../components/ui/Title/Title';
 import styles from './ProductsList.module.css';
 import { useAuthContent } from '../../context/AuthContext';
 import LoadingSpinner from '../ui/LoadingSpinner/LoadingSpinner';
 import useProducts from '../../hooks/useProducts';
-
 
 
 export default function ProductsList({ type = 'all' }) {
@@ -18,14 +15,6 @@ export default function ProductsList({ type = 'all' }) {
         best: { highlight: 'BEST', text: 'SELLER' },
         bookmark: { highlight: 'BOOKMARK', text: 'PRODUCTS' }
     }
-    // const {
-    //     isLoading,
-    //     error,
-    //     data: products
-    // } = useQuery({
-    //     queryKey: ['products', uid || ''],
-    //     queryFn: async () => getProduct(uid),
-    // });
 
     const { productQuery: {
         isLoading,
