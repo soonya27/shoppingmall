@@ -17,21 +17,13 @@ const auth = getAuth();
 const database = getDatabase();
 
 export function login() {
-    // return signInWithPopup(auth, provider)
-    //     .then((result) => {
-    //         const user = result.user;
-    //         return user;
-    //     }).catch(console.error)
     signInWithPopup(auth, provider)
         .catch(console.error)
 }
 export function logout() {
-    // return signOut(auth).then(() => null).catch((error) => {
-    // });
     signOut(auth)
         .catch(console.error);
 }
-
 
 export function onUserStateChange(callback) {
     onAuthStateChanged(auth, async (user) => {
@@ -53,7 +45,6 @@ async function adminUser(user) {
         console.error(error);
     });
 }
-
 
 export async function addNewProduct(product, { defaultImageUrl, hoverImageUrl }) {
     const id = uuid();
@@ -93,7 +84,6 @@ export async function removeCartAll(user) {
     return remove(ref(database, 'carts/' + user));
 }
 
-
 export async function addBookmarkByUser({ user, product }) {
     set(ref(database, 'bookmarks/' + user + '/' + product.id), {
         ...product,
@@ -103,8 +93,6 @@ export async function addBookmarkByUser({ user, product }) {
 export async function removeFromBookmark(user, productId) {
     return remove(ref(database, 'bookmarks/' + user + '/' + productId));
 }
-
-
 
 export async function getBookmarks(uid) {
     return get(child(ref(database), `bookmarks/${uid}`)).then((snapshot) => {
@@ -135,8 +123,6 @@ export async function getProduct(uid) {
     });
 }
 
-
-
 export async function getCartProduct(uid) {
     return get(child(ref(database), `carts/${uid}`)).then((snapshot) => {
         if (snapshot.exists()) {
@@ -147,8 +133,3 @@ export async function getCartProduct(uid) {
         console.error(error);
     });
 }
-
-
-
-
-
